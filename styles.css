@@ -2922,3 +2922,27 @@ body[data-theme="dark"] .segmented button:focus-visible { outline: 2px solid #b5
 .teaser-playback > span { color: #b8c5be; font: 11px ui-monospace, monospace; white-space: nowrap; }
 @media (max-width: 1050px) { #outdoor-tabs { grid-template-columns: repeat(4,minmax(0,1fr)); } }
 @media (max-width: 600px) { #outdoor-tabs { grid-template-columns: repeat(2,minmax(0,1fr)); } .teaser-playback { gap: 9px; padding-inline: 12px; } }
+
+/* Give the diagrams the wide column and align the three notes to their height. */
+body[data-theme="dark"] #method .method-figure { width: 100%; margin: 0; padding: 0; }
+#method .method-layout { display: grid; grid-template-columns: minmax(0,2.8fr) minmax(260px,1fr); gap: 32px; align-items: stretch; }
+body[data-theme="dark"] #method .method-pipeline-pair { grid-template-columns: 1fr; gap: 24px; align-content: start; }
+#method .method-steps { display: grid; grid-template-columns: 1fr; grid-template-rows: repeat(3,minmax(0,1fr)); gap: 14px; margin: 0; }
+#method .method-steps article { padding: 24px 20px; grid-template-columns: 32px minmax(0,1fr); column-gap: 14px; align-content: center; border-radius: 14px; }
+#method .method-steps article > span { width: 30px; height: 30px; font-size: 13px; }
+#method .method-steps h3 { font-size: 20px; }
+#method .method-steps p { font-size: 14px; line-height: 1.65; }
+body[data-theme="dark"] #method .method-figure figcaption { max-width: none; margin-top: 24px; }
+body[data-theme="dark"] .citation-card { background: #1b2024; color: var(--ink); border: 1px solid #ffffff24; box-shadow: none; }
+body[data-theme="dark"] .citation-card .mini-label { color: #b5a5ff; }
+body[data-theme="dark"] .citation-card h3 { color: #eef0ec; font-size: 26px; margin: 8px 0 0; }
+body[data-theme="dark"] .citation-card > p { color: #a8afaf; font-size: 14px; line-height: 1.6; }
+body[data-theme="dark"] .citation-card .text-link { color: #d5c8ff; border-bottom-color: #b5a5ff66; }
+body[data-theme="dark"] .citation-card .text-link:hover { color: #fff; border-color: #fff; }
+@media (max-width: 1000px) {
+ #method .method-layout { grid-template-columns: 1fr; gap: 24px; }
+ #method .method-steps { grid-template-columns: repeat(3,minmax(0,1fr)); grid-template-rows: auto; }
+ #method .method-steps article { display: block; padding: 20px; }
+ #method .method-steps article > span { margin-bottom: 16px; }
+}
+@media (max-width: 600px) { #method .method-steps { grid-template-columns: 1fr; } }

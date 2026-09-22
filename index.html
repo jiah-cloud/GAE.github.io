@@ -15,7 +15,7 @@
     />
     <meta property="og:image" content="assets/t2i/images/geisha_rgb.png" />
     <title>GAE · Geometry-Native World Generation</title>
-    <link rel="stylesheet" href="styles.css?v=20260922sixseconds" />
+    <link rel="stylesheet" href="styles.css?v=20260922method" />
   </head>
   <body data-theme="dark">
     <div class="grain" aria-hidden="true"></div>
@@ -45,11 +45,10 @@
       <a href="#method"><span>02</span><b>Pipeline</b></a>
       <a href="#i2v"><span>03</span><b>Indoor scenes</b></a>
       <a href="#outdoor"><span>04</span><b>Outdoor scenes</b></a>
-      <a href="#pointcloud"><span>05</span><b>RGB + geometry</b></a>
+      <a href="#pointcloud"><span>05</span><b>3D consistency</b></a>
       <a href="#compare"><span>06</span><b>Latent comparison</b></a>
-      <a href="#independent3d"><span>07</span><b>Independent 3D check</b></a>
-      <a href="#t2i"><span>08</span><b>Image + 3D</b></a>
-      <a href="#paper"><span>09</span><b>Paper</b></a>
+      <a href="#t2i"><span>07</span><b>Image + 3D</b></a>
+      <a href="#paper"><span>08</span><b>Paper</b></a>
       </div>
     </nav>
 
@@ -242,6 +241,7 @@
           </p>
         </div>
         <figure class="method-figure reveal">
+          <div class="method-layout">
           <div class="method-pipeline-pair">
             <a href="assets/figures/gae-pipeline-stage-1-dark.webp" target="_blank" rel="noopener noreferrer" aria-label="View Stage 1 diagram at full resolution">
               <img loading="lazy" decoding="async" src="assets/figures/gae-pipeline-stage-1-dark.webp" alt="Stage 1: compact diffusable geometry latent, from frozen foundation features through geometry autoencoding to RGB and geometry heads" />
@@ -250,17 +250,18 @@
               <img loading="lazy" decoding="async" src="assets/figures/gae-pipeline-stage-2-dark.webp" alt="Stage 2: conditional flow matching with reference latents, camera rays, and text, jointly decoding generated latents into RGB, depth, point clouds, and poses" />
             </a>
           </div>
+        <div class="method-steps">
+          <article class="reveal"><span>1</span><h3>Encode & distill</h3><p>Freeze the geometry foundation model; learn only the compact multi-level codec.</p></article>
+          <article class="reveal"><span>2</span><h3>Generate & control</h3><p>Run x-prediction flow matching with text, reference evidence, and metric rays.</p></article>
+          <article class="reveal"><span>3</span><h3>Decode jointly</h3><p>Recover RGB, depth, pose, and point-cloud geometry from the same generated latent state.</p></article>
+        </div>
+          </div>
           <figcaption>
             <b>GAE pipeline.</b> Multi-level DA3 features are fused and compressed into a
             standardized compact latent. Text, clean reference tokens, and metric camera rays
             control flow matching; generated states decode jointly to RGB, depth, pose, and point-cloud geometry. <a href="assets/figures/ngd_pipeline_overview.pdf" target="_blank" rel="noreferrer">Open vector PDF ↗</a>
           </figcaption>
         </figure>
-        <div class="method-steps">
-          <article class="reveal"><span>1</span><h3>Encode & distill</h3><p>Freeze the geometry foundation model; learn only the compact multi-level codec.</p></article>
-          <article class="reveal"><span>2</span><h3>Generate & control</h3><p>Run x-prediction flow matching with text, reference evidence, and metric rays.</p></article>
-          <article class="reveal"><span>3</span><h3>Decode jointly</h3><p>Recover RGB, depth, pose, and point-cloud geometry from the same generated latent state.</p></article>
-        </div>
       </section>
 
 
@@ -401,7 +402,7 @@
       <section class="results results-dark" id="pointcloud">
         <div class="section-shell">
           <div class="section-heading section-heading-light reveal">
-            <p class="section-index">05 / RGB + geometry</p>
+            <p class="section-index">05 / 3D consistency</p>
             <h2>Compare each video with the geometry it generates.</h2>
             <p>
               Each column shows a method's generated RGB sequence alongside its reconstruction score.
@@ -480,39 +481,10 @@
       </section>
 
 
-      <section class="results independent3d-section" id="independent3d">
-        <div class="section-shell">
-          <div class="section-heading reveal">
-            <p class="section-index">07 / Independent 3D check</p>
-            <h2>Video + pose, recovered from each generated sequence.</h2>
-            <p>
-              A frozen VGGT evaluator independently reconstructs geometry and camera motion
-              from Wan2.1, RAEv2, and GAE outputs generated from the same reference image and prescribed trajectory.
-              Inspect the generated videos and how closely each recovered camera path follows the target poses.
-            </p>
-          </div>
-          <div class="sample-tabs independent3d-tabs reveal" id="independent3d-tabs" role="tablist" aria-label="Independent 3D check scenes"></div>
-          <div class="independent3d-shell reveal">
-            <div class="independent3d-topline">
-              <div>
-                <h3 id="independent3d-title">White glass-door interior</h3>
-              </div>
-              <figure class="independent3d-reference">
-                <img id="independent3d-reference" alt="Shared reference image" />
-                <figcaption>Shared reference</figcaption>
-              </figure>
-            </div>
-            <div class="independent3d-grid" id="independent3d-grid"></div>
-            
-            <p class="result-caption" id="independent3d-caption"></p>
-          </div>
-        </div>
-      </section>
-
       <section class="results results-light restored-images" id="t2i">
         <div class="section-shell">
           <div class="section-heading reveal">
-            <p class="section-index">08 / Text to image</p>
+            <p class="section-index">07 / Text to image</p>
             <h2>One prompt. RGB, depth, and 3D.</h2>
             <p>Twenty text-generated examples span characters, robots, interiors, food, sculpture, and stylized portraits. Select a scene to compare its RGB image, depth map, and interactive point cloud, decoded from the same generated latent.</p>
           </div>
@@ -541,23 +513,10 @@
       <section class="paper-section" id="paper">
         <div class="section-shell paper-grid">
           <article class="abstract-card reveal">
-            <p class="section-index">09 / Paper</p>
+            <p class="section-index">08 / Paper</p>
             <h2>Abstract</h2>
-            <p>
-              The latent space is a central design choice in modern visual diffusion, yet
-              most latent spaces are optimized for single-image appearance rather than
-              multi-view geometry. Pixel VAEs are compact and decodable but weakly
-              geometry-aware, whereas raw geometry-foundation features carry depth, pose,
-              and correspondence but are high-dimensional, ill-conditioned, and spectrally
-              near-degenerate as a diffusion state.
-            </p>
-            <p>
-              GAE: Learning a Geometry-Native Latent Space for 3D-Consistent World Generation compresses frozen geometry-foundation features into
-              a small latent whose generated states decode jointly into RGB and geometry.
-              Spectral, semantic, and spatial diagnostics guide the compact representation;
-              x-prediction, train/inference-aligned reference conditioning, and metric
-              ray-space pose conditioning make it a controllable visual world-model state.
-            </p>
+            <p>We present a compact geometry-native latent space as a shared foundation for perception and generation. Visual generators can produce photorealistic frames without preserving a consistent 3D scene. We argue that this is not only a modeling problem but also a representation problem: generators typically evolve appearance-centric latents, while perception models recover geometry in a semantically rich space that encodes cross-view structure. Rather than adding geometry as another output, we reparameterize a geometry foundation model’s features into a compact latent space for generation. We realize this shift with the geometry-native autoencoder (GAE), whose latent is jointly decodable to appearance, depth, cameras, and point maps. With this state, a standard conditional flow supports diverse generation tasks.</p>
+            <p>In controlled comparisons that hold the generator and training protocol fixed, replacing the latent with GAE improves both visual quality and independently measured 3D coherence: FVD falls by 12.7% and 23.1% on RealEstate10K and DL3DV, and camera-trajectory error is halved on RealEstate10K. Together, these results show that the latent space is central to geometry-consistent generation and can serve as a shared interface between perception and generation.</p>
             <a class="text-link" href="https://arxiv.org/abs/2609.24981" target="_blank" rel="noopener noreferrer">Read the full paper <span>↗</span></a>
           </article>
           <article class="citation-card reveal">
@@ -587,12 +546,12 @@
     </noscript>
     <script src="assets/direct-data/pose-data.js" defer></script>
     <script src="assets/direct-data/i2v-samples.js?v=20260922release" defer></script>
-    <script src="assets/direct-data/outdoor-samples.js?v=20260922sixseconds" defer></script>
+    <script src="assets/direct-data/outdoor-samples.js?v=20260922method" defer></script>
     <script src="assets/direct-data/outdoor-poses.js" defer></script>
     <script src="assets/direct-data/compare-poses.js?v=20260919e" defer></script>
     <script src="output-quality-radar.bundle.js?v=20260921cmp" defer></script>
     <script src="image-viewer.bundle.js?v=20260921" defer></script>
-    <script src="app.bundle.js?v=20260922sixseconds" defer></script>
+    <script src="app.bundle.js?v=20260922method" defer></script>
     <script src="hero-showcase.js?v=20260922orbit" defer></script>
     <script src="case-navigation.js?v=20260922grid" defer></script>
     <script src="chapter-navigation.js?v=20260922hover" defer></script>

@@ -2494,7 +2494,6 @@ initI2V();
 outdoorGallery.init();
   initCompare();
   initCloud();
-  initIndependent3D();
 
 initT2I();
 initPageChrome();
