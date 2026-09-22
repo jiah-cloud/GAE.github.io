@@ -1,3 +1,32 @@
+// Defer offscreen video sources rather than merely pausing downloaded clips.
+const deferredVideoJobs = new WeakMap();
+const readyVideos = new WeakSet();
+const mediaLoadObserver = new IntersectionObserver(entries => {
+  for (const entry of entries) {
+    if (!entry.isIntersecting) continue;
+    const video = entry.target;
+    readyVideos.add(video);
+    mediaLoadObserver.unobserve(video);
+    const job = deferredVideoJobs.get(video);
+    deferredVideoJobs.delete(video);
+    if (job) job();
+  }
+}, {rootMargin: '600px 0px'});
+function deferVideoSource(video, apply) {
+  // The first gallery is the next likely destination, so warm both clips at startup.
+  if (video.id.startsWith('teaser-')) {
+    readyVideos.add(video);
+    video.preload = 'auto';
+    return false;
+  }
+  if (readyVideos.has(video)) return false;
+  video.preload = 'none';
+  video.autoplay = false;
+  deferredVideoJobs.set(video, apply);
+  mediaLoadObserver.observe(video);
+  return true;
+}
+
 // Generated from local source modules by scripts/build.py.
 (() => {
 const module1 = (() => {
@@ -8,18 +37,20 @@ const teaserSamples = [
     "domain": "WorldLabs",
     "sample": "057",
     "title": "Village square",
-    "checkpoint": "WorldLabs · step 13000",
-    "rgb": "assets/colleague/curated-20260916/videos/worldlabs-057_rgb.mp4",
-    "progressive": "assets/colleague/curated-20260916/videos/worldlabs-057_progressive.mp4",
+    "checkpoint": "WorldLabs \u00b7 step 13000",
+    "rgb": "assets/teaser-sync/worldlabs-057_rgb.mp4",
+    "progressive": "assets/teaser-sync/worldlabs-057_progressive.mp4",
     "caption": "A storybook village square framed by timber houses and a stone well.",
     "source": "step0013000/worldlabs_packed/scannetpp/057_pred.mp4",
     "metrics": [
-      "81 frames · 12 fps",
-      "672 × 378",
+      "81 frames \u00b7 12 fps",
+      "672 \u00d7 378",
       "1 conditioning frame"
     ],
     "displayNumber": 1,
-    "label": "Village square"
+    "label": "Village square",
+    "rgbPoster": "assets/colleague/curated-20260916/videos/worldlabs-057_rgb_poster.jpg",
+    "progressivePoster": "assets/colleague/curated-20260916/videos/worldlabs-057_progressive_poster.jpg"
   },
   {
     "key": "worldlabs-064",
@@ -27,72 +58,86 @@ const teaserSamples = [
     "domain": "WorldLabs",
     "sample": "064",
     "title": "Ancient forest",
-    "checkpoint": "WorldLabs · step 13000",
-    "rgb": "assets/colleague/curated-20260916/videos/worldlabs-064_rgb.mp4",
-    "progressive": "assets/colleague/curated-20260916/videos/worldlabs-064_progressive.mp4",
+    "checkpoint": "WorldLabs \u00b7 step 13000",
+    "rgb": "assets/teaser-sync/worldlabs-064_rgb.mp4",
+    "progressive": "assets/teaser-sync/worldlabs-064_progressive.mp4",
     "caption": "A camera path through an ancient forest of roots, moss, and running water.",
     "source": "step0013000/worldlabs_packed/scannetpp/064_pred.mp4",
     "metrics": [
-      "81 frames · 12 fps",
-      "672 × 378",
+      "81 frames \u00b7 12 fps",
+      "672 \u00d7 378",
       "1 conditioning frame"
     ],
     "displayNumber": 2,
-    "label": "Ancient forest"
+    "label": "Ancient forest",
+    "rgbPoster": "assets/colleague/curated-20260916/videos/worldlabs-064_rgb_poster.jpg",
+    "progressivePoster": "assets/colleague/curated-20260916/videos/worldlabs-064_progressive_poster.jpg"
   },
   {
     "key": "world-054",
     "label": "Desert drive",
-    "rgb": "assets/teaser/world-054_rgb.mp4",
-    "progressive": "assets/teaser/world-054_progressive.mp4",
+    "rgb": "assets/teaser-sync/world-054_rgb.mp4",
+    "progressive": "assets/teaser-sync/world-054_progressive.mp4",
     "displayNumber": 3,
     "tab": "Desert drive",
-    "title": "Desert drive"
+    "title": "Desert drive",
+    "rgbPoster": "assets/teaser/world-054_rgb_poster.jpg",
+    "progressivePoster": "assets/teaser/world-054_progressive_poster.jpg"
   },
   {
     "key": "world-061",
     "label": "Hillside drive",
-    "rgb": "assets/teaser/world-061_rgb.mp4",
-    "progressive": "assets/teaser/world-061_progressive.mp4",
+    "rgb": "assets/teaser-sync/world-061_rgb.mp4",
+    "progressive": "assets/teaser-sync/world-061_progressive.mp4",
     "displayNumber": 4,
     "tab": "Hillside drive",
-    "title": "Hillside drive"
+    "title": "Hillside drive",
+    "rgbPoster": "assets/teaser/world-061_rgb_poster.jpg",
+    "progressivePoster": "assets/teaser/world-061_progressive_poster.jpg"
   },
   {
     "key": "world-089",
     "label": "Village street",
-    "rgb": "assets/teaser/world-089_rgb.mp4",
-    "progressive": "assets/teaser/world-089_progressive.mp4",
+    "rgb": "assets/teaser-sync/world-089_rgb.mp4",
+    "progressive": "assets/teaser-sync/world-089_progressive.mp4",
     "displayNumber": 5,
     "tab": "Village street",
-    "title": "Village street"
+    "title": "Village street",
+    "rgbPoster": "assets/teaser/world-089_rgb_poster.jpg",
+    "progressivePoster": "assets/teaser/world-089_progressive_poster.jpg"
   },
   {
     "key": "world-114",
     "label": "Forest rider",
-    "rgb": "assets/teaser/world-114_rgb.mp4",
-    "progressive": "assets/teaser/world-114_progressive.mp4",
+    "rgb": "assets/teaser-sync/world-114_rgb.mp4",
+    "progressive": "assets/teaser-sync/world-114_progressive.mp4",
     "displayNumber": 6,
     "tab": "Forest rider",
-    "title": "Forest rider"
+    "title": "Forest rider",
+    "rgbPoster": "assets/teaser/world-114_rgb_poster.jpg",
+    "progressivePoster": "assets/teaser/world-114_progressive_poster.jpg"
   },
   {
     "key": "world-120",
     "label": "Night walk",
-    "rgb": "assets/teaser/world-120_rgb.mp4",
-    "progressive": "assets/teaser/world-120_progressive.mp4",
+    "rgb": "assets/teaser-sync/world-120_rgb.mp4",
+    "progressive": "assets/teaser-sync/world-120_progressive.mp4",
     "displayNumber": 7,
     "tab": "Night walk",
-    "title": "Night walk"
+    "title": "Night walk",
+    "rgbPoster": "assets/teaser/world-120_rgb_poster.jpg",
+    "progressivePoster": "assets/teaser/world-120_progressive_poster.jpg"
   },
   {
     "key": "world-125",
     "label": "Town square",
-    "rgb": "assets/teaser/world-125_rgb.mp4",
-    "progressive": "assets/teaser/world-125_progressive.mp4",
+    "rgb": "assets/teaser-sync/world-125_rgb.mp4",
+    "progressive": "assets/teaser-sync/world-125_progressive.mp4",
     "displayNumber": 8,
     "tab": "Town square",
-    "title": "Town square"
+    "title": "Town square",
+    "rgbPoster": "assets/teaser/world-125_rgb_poster.jpg",
+    "progressivePoster": "assets/teaser/world-125_progressive_poster.jpg"
   },
   {
     "key": "lm-lingbo-world2",
@@ -100,18 +145,20 @@ const teaserSamples = [
     "domain": "Large motion v1",
     "sample": "lm-lingbo-world2",
     "title": "Village gate",
-    "checkpoint": "LM-v1 · step 2000",
-    "rgb": "assets/colleague/curated-20260916/videos/lm-lingbo-world2_rgb.mp4",
-    "progressive": "assets/colleague/curated-20260916/videos/lm-lingbo-world2_progressive.mp4",
+    "checkpoint": "LM-v1 \u00b7 step 2000",
+    "rgb": "assets/teaser-sync/lm-lingbo-world2_rgb.mp4",
+    "progressive": "assets/teaser-sync/lm-lingbo-world2_progressive.mp4",
     "caption": "A forward traversal through a wooden gate into a mountain village.",
     "source": "large-motion-v1-page-eval/0002000/20260904_224943/eval/shard_2/case_000",
     "metrics": [
-      "81 frames · 8 fps",
-      "672 × 378",
+      "81 frames \u00b7 8 fps",
+      "672 \u00d7 378",
       "1 conditioning frame"
     ],
     "displayNumber": 9,
-    "label": "Village gate"
+    "label": "Village gate",
+    "rgbPoster": "assets/colleague/curated-20260916/videos/lm-lingbo-world2_rgb_poster.jpg",
+    "progressivePoster": "assets/colleague/curated-20260916/videos/lm-lingbo-world2_progressive_poster.jpg"
   },
   {
     "key": "pexels-36584880",
@@ -119,18 +166,20 @@ const teaserSamples = [
     "domain": "Large motion v2",
     "sample": "pexels-36584880",
     "title": "Old town",
-    "checkpoint": "LM-v2 Pexels · step 1000",
-    "rgb": "assets/colleague/curated-20260916/videos/pexels-36584880_rgb.mp4",
-    "progressive": "assets/colleague/curated-20260916/videos/pexels-36584880_progressive.mp4",
+    "checkpoint": "LM-v2 Pexels \u00b7 step 1000",
+    "rgb": "assets/teaser-sync/pexels-36584880_rgb.mp4",
+    "progressive": "assets/teaser-sync/pexels-36584880_progressive.mp4",
     "caption": "An aerial orbit over a dense historic town at dusk.",
     "source": "large-motion-v2-pexels-eval/0001000/20260907_101355/eval/shard_4/case_000",
     "metrics": [
-      "81 frames · 8 fps",
-      "672 × 378",
+      "81 frames \u00b7 8 fps",
+      "672 \u00d7 378",
       "1 conditioning frame"
     ],
     "displayNumber": 10,
-    "label": "Old town"
+    "label": "Old town",
+    "rgbPoster": "assets/colleague/curated-20260916/videos/pexels-36584880_rgb_poster.jpg",
+    "progressivePoster": "assets/colleague/curated-20260916/videos/pexels-36584880_progressive_poster.jpg"
   },
   {
     "key": "pexels-38724392-c0",
@@ -138,18 +187,20 @@ const teaserSamples = [
     "domain": "Large motion v2",
     "sample": "pexels-38724392-c0",
     "title": "Lakeside trail",
-    "checkpoint": "LM-v2 Pexels · step 1000",
-    "rgb": "assets/colleague/curated-20260916/videos/pexels-38724392-c0_rgb.mp4",
-    "progressive": "assets/colleague/curated-20260916/videos/pexels-38724392-c0_progressive.mp4",
+    "checkpoint": "LM-v2 Pexels \u00b7 step 1000",
+    "rgb": "assets/teaser-sync/pexels-38724392-c0_rgb.mp4",
+    "progressive": "assets/teaser-sync/pexels-38724392-c0_progressive.mp4",
     "caption": "A low camera path along a pine forest trail beside a lake.",
     "source": "large-motion-v2-pexels-eval/0001000/20260907_101355/eval/shard_6/case_001",
     "metrics": [
-      "81 frames · 8 fps",
-      "672 × 378",
+      "81 frames \u00b7 8 fps",
+      "672 \u00d7 378",
       "1 conditioning frame"
     ],
     "displayNumber": 11,
-    "label": "Lakeside trail"
+    "label": "Lakeside trail",
+    "rgbPoster": "assets/colleague/curated-20260916/videos/pexels-38724392-c0_rgb_poster.jpg",
+    "progressivePoster": "assets/colleague/curated-20260916/videos/pexels-38724392-c0_progressive_poster.jpg"
   },
   {
     "key": "worldlabs-001",
@@ -157,18 +208,20 @@ const teaserSamples = [
     "domain": "WorldLabs",
     "sample": "001",
     "title": "Knitted harbor",
-    "checkpoint": "WorldLabs · step 13000",
-    "rgb": "assets/colleague/curated-20260916/videos/worldlabs-001_rgb.mp4",
-    "progressive": "assets/colleague/curated-20260916/videos/worldlabs-001_progressive.mp4",
+    "checkpoint": "WorldLabs \u00b7 step 13000",
+    "rgb": "assets/teaser-sync/worldlabs-001_rgb.mp4",
+    "progressive": "assets/teaser-sync/worldlabs-001_progressive.mp4",
     "caption": "A handcrafted harbor scene centered on a knitted octopus and miniature boats.",
     "source": "step0013000/worldlabs_packed/scannetpp/001_pred.mp4",
     "metrics": [
-      "81 frames · 12 fps",
-      "672 × 378",
+      "81 frames \u00b7 12 fps",
+      "672 \u00d7 378",
       "1 conditioning frame"
     ],
     "displayNumber": 12,
-    "label": "Knitted harbor"
+    "label": "Knitted harbor",
+    "rgbPoster": "assets/colleague/curated-20260916/videos/worldlabs-001_rgb_poster.jpg",
+    "progressivePoster": "assets/colleague/curated-20260916/videos/worldlabs-001_progressive_poster.jpg"
   },
   {
     "key": "lm-kitti-0005-split7",
@@ -176,63 +229,75 @@ const teaserSamples = [
     "domain": "Large motion v1",
     "sample": "lm-kitti-0005-split7",
     "title": "Driveway",
-    "checkpoint": "LM-v1 · step 2000",
-    "rgb": "assets/colleague/curated-20260916/videos/lm-kitti-0005-split7_rgb.mp4",
-    "progressive": "assets/colleague/curated-20260916/videos/lm-kitti-0005-split7_progressive.mp4",
+    "checkpoint": "LM-v1 \u00b7 step 2000",
+    "rgb": "assets/teaser-sync/lm-kitti-0005-split7_rgb.mp4",
+    "progressive": "assets/teaser-sync/lm-kitti-0005-split7_progressive.mp4",
     "caption": "A close residential driveway sequence with strong foreground parallax.",
     "source": "large-motion-v1-page-eval/0002000/20260904_224943/eval/shard_5/case_002",
     "metrics": [
-      "81 frames · 8 fps",
-      "672 × 378",
+      "81 frames \u00b7 8 fps",
+      "672 \u00d7 378",
       "1 conditioning frame"
     ],
     "displayNumber": 13,
-    "label": "Driveway"
+    "label": "Driveway",
+    "rgbPoster": "assets/colleague/curated-20260916/videos/lm-kitti-0005-split7_rgb_poster.jpg",
+    "progressivePoster": "assets/colleague/curated-20260916/videos/lm-kitti-0005-split7_progressive_poster.jpg"
   },
   {
     "key": "indoor-000",
     "label": "Blue sofa",
-    "rgb": "assets/teaser/indoor-000_rgb.mp4",
-    "progressive": "assets/teaser/indoor-000_progressive.mp4",
+    "rgb": "assets/teaser-sync/indoor-000_rgb.mp4",
+    "progressive": "assets/teaser-sync/indoor-000_progressive.mp4",
     "displayNumber": 14,
     "tab": "Blue sofa",
-    "title": "Blue sofa"
+    "title": "Blue sofa",
+    "rgbPoster": "assets/teaser/indoor-000_rgb_poster.jpg",
+    "progressivePoster": "assets/teaser/indoor-000_progressive_poster.jpg"
   },
   {
     "key": "indoor-001",
     "label": "Cozy bedroom",
-    "rgb": "assets/teaser/indoor-001_rgb.mp4",
-    "progressive": "assets/teaser/indoor-001_progressive.mp4",
+    "rgb": "assets/teaser-sync/indoor-001_rgb.mp4",
+    "progressive": "assets/teaser-sync/indoor-001_progressive.mp4",
     "displayNumber": 15,
     "tab": "Cozy bedroom",
-    "title": "Cozy bedroom"
+    "title": "Cozy bedroom",
+    "rgbPoster": "assets/teaser/indoor-001_rgb_poster.jpg",
+    "progressivePoster": "assets/teaser/indoor-001_progressive_poster.jpg"
   },
   {
     "key": "outdoor-033",
     "label": "Urban avenue",
-    "rgb": "assets/teaser/outdoor-033_rgb.mp4",
-    "progressive": "assets/teaser/outdoor-033_progressive.mp4",
+    "rgb": "assets/teaser-sync/outdoor-033_rgb.mp4",
+    "progressive": "assets/teaser-sync/outdoor-033_progressive.mp4",
     "displayNumber": 16,
     "tab": "Urban avenue",
-    "title": "Urban avenue"
+    "title": "Urban avenue",
+    "rgbPoster": "assets/teaser/outdoor-033_rgb_poster.jpg",
+    "progressivePoster": "assets/teaser/outdoor-033_progressive_poster.jpg"
   },
   {
     "key": "outdoor-035",
     "label": "Church steps",
-    "rgb": "assets/teaser/outdoor-035_rgb.mp4",
-    "progressive": "assets/teaser/outdoor-035_progressive.mp4",
+    "rgb": "assets/teaser-sync/outdoor-035_rgb.mp4",
+    "progressive": "assets/teaser-sync/outdoor-035_progressive.mp4",
     "displayNumber": 17,
     "tab": "Church steps",
-    "title": "Church steps"
+    "title": "Church steps",
+    "rgbPoster": "assets/teaser/outdoor-035_rgb_poster.jpg",
+    "progressivePoster": "assets/teaser/outdoor-035_progressive_poster.jpg"
   },
   {
     "key": "worldlabs-005",
     "label": "Toy room",
-    "rgb": "assets/colleague/curated-20260916/videos/worldlabs-005_rgb.mp4",
-    "progressive": "assets/colleague/curated-20260916/videos/worldlabs-005_progressive.mp4",
+    "rgb": "assets/teaser-sync/worldlabs-005_rgb.mp4",
+    "progressive": "assets/teaser-sync/worldlabs-005_progressive.mp4",
     "displayNumber": 18,
     "tab": "Toy room",
-    "title": "Toy room"
+    "title": "Toy room",
+    "rgbPoster": "assets/colleague/curated-20260916/videos/worldlabs-005_rgb_poster.jpg",
+    "progressivePoster": "assets/colleague/curated-20260916/videos/worldlabs-005_progressive_poster.jpg"
   }
 ];
 
@@ -1074,8 +1139,21 @@ function setActive(container, key) {
   });
 }
 
+function updateMediaToggle(toggle, sample, mode) {
+  if (!toggle) return;
+  const buttons = [...toggle.querySelectorAll('button')];
+  const available = buttons.filter(button => Boolean(sample[button.dataset.mode]));
+  toggle.hidden = available.length < 2;
+  for (const button of buttons) {
+    button.hidden = !sample[button.dataset.mode];
+    button.classList.toggle('active', button.dataset.mode === mode);
+    button.setAttribute('aria-pressed', String(button.dataset.mode === mode));
+  }
+}
+
 function swapVideo(video, source, openLinkSelector = "#i2v-video-open", autoplay = true) {
   video.poster = source.replace(/\.mp4(?=([?#]|$))/, "_poster.jpg");
+  if (deferVideoSource(video, () => swapVideo(video, source, openLinkSelector, autoplay))) return false;
   const directLink = document.querySelector(openLinkSelector);
   if (directLink) directLink.href = source;
   if (video.dataset.videoSource === source) {
@@ -1321,7 +1399,7 @@ function initRecon() {
     button.type = "button";
     button.role = "tab";
     button.dataset.key = sample.key;
-    button.innerHTML = `<img src="${sample.rgb.replace(/\.mp4$/, "_poster.jpg")}" alt="" loading="lazy" /><span><b>${String(index + 1).padStart(2, "0")} · ${sample.tab}</b></span>`;
+    button.innerHTML = `<img src="${sample.rgb.replace(/\.mp4$/, "_poster.jpg")}" alt="" loading="lazy" decoding="async" /><span><b>${String(index + 1).padStart(2, "0")} · ${sample.tab}</b></span>`;
     button.addEventListener("click", () => selectRecon(index));
     tabs.appendChild(button);
   });
@@ -1331,6 +1409,7 @@ function initRecon() {
       currentReconMode = button.dataset.mode;
       document.querySelectorAll("#recon-media-toggle button").forEach((item) => {
         item.classList.toggle("active", item === button);
+          item.setAttribute("aria-pressed", String(item === button));
       });
       updateReconMedia();
     });
@@ -1389,7 +1468,7 @@ function initI2V() {
     button.type = "button";
     button.role = "tab";
     button.dataset.key = sample.key;
-    button.innerHTML = `<img src="${sample.rgb.replace(/\.mp4$/, "_poster.jpg")}" alt="" loading="lazy" /><span><b>${String(index + 1).padStart(2, "0")} · ${sample.tab}</b></span>`;
+    button.innerHTML = `<img src="${sample.rgb.replace(/\.mp4$/, "_poster.jpg")}" alt="" loading="lazy" decoding="async" /><span><b>${String(index + 1).padStart(2, "0")} · ${sample.tab}</b></span>`;
     button.addEventListener("click", () => selectI2V(index));
     tabs.appendChild(button);
   });
@@ -1419,6 +1498,7 @@ function setProgressiveVideo(sample) {
   if (!video || !sample.progressive) return;
   const source = sample.progressive;
   video.poster = source.replace(/\.mp4$/, "_poster.jpg");
+  if (deferVideoSource(video, () => setProgressiveVideo(sample))) return;
   video.pause();
   video.removeAttribute("src");
   const mp4 = document.createElement("source");
@@ -1444,10 +1524,7 @@ function selectI2V(index) {
   document.querySelector("#i2v-caption").textContent = sample.caption;
   document.querySelector("#i2v-metrics").innerHTML = sample.metrics.map((metric) => `<span>${metric}</span>`).join("");
   if (!sample[currentI2VMode]) currentI2VMode = "rgb";
-  document.querySelectorAll("#i2v-media-toggle button").forEach(button => {
-    button.hidden = !sample[button.dataset.mode];
-    button.classList.toggle("active", button.dataset.mode === currentI2VMode);
-  });
+  updateMediaToggle(document.querySelector('#i2v-media-toggle'), sample, currentI2VMode);
   loadPoseOverlay(sample);
   updateI2VMedia();
   setProgressiveVideo(sample);
@@ -1538,6 +1615,7 @@ function createSequenceGallery(prefix, samples) {
     if (!video || !sample.progressive) return;
     const source = sample.progressive;
     video.poster = source.replace(/\.mp4$/, "_poster.jpg");
+  if (deferVideoSource(video, () => setProgressiveVideo(sample))) return;
     video.pause();
     video.removeAttribute("src");
     const mp4 = document.createElement("source");
@@ -1568,10 +1646,7 @@ function createSequenceGallery(prefix, samples) {
       .map((metric) => `<span>${metric}</span>`)
       .join("");
     if (!sample[currentMode]) currentMode = "rgb";
-    elements("media-toggle").forEach(button => {
-      button.hidden = !sample[button.dataset.mode];
-      button.classList.toggle("active", button.dataset.mode === currentMode);
-    });
+    updateMediaToggle(element('media-toggle'), sample, currentMode);
     loadPoseOverlay(sample);
     updateMedia();
     setProgressiveVideo(sample);
@@ -1585,7 +1660,7 @@ function createSequenceGallery(prefix, samples) {
       button.type = "button";
       button.role = "tab";
       button.dataset.key = sample.key;
-      button.innerHTML = `<img src="${sample.rgb.replace(/\.mp4$/, "_poster.jpg")}" alt="" loading="lazy" /><span><b>${String(index + 1).padStart(2, "0")} · ${sample.tab}</b></span>`;
+      button.innerHTML = `<img src="${sample.rgb.replace(/\.mp4$/, "_poster.jpg")}" alt="" loading="lazy" decoding="async" /><span><b>${String(index + 1).padStart(2, "0")} · ${sample.tab}</b></span>`;
       button.addEventListener("click", () => select(index));
       tabs.appendChild(button);
     });
@@ -1595,6 +1670,7 @@ function createSequenceGallery(prefix, samples) {
         currentMode = button.dataset.mode;
         elements("media-toggle").forEach((item) => {
           item.classList.toggle("active", item === button);
+          item.setAttribute("aria-pressed", String(item === button));
         });
         updateMedia();
       });
@@ -1605,6 +1681,7 @@ function createSequenceGallery(prefix, samples) {
         currentGeoMode = button.dataset.geo;
         elements("geo-toggle").forEach((item) => {
           item.classList.toggle("active", item === button);
+          item.setAttribute("aria-pressed", String(item === button));
         });
         updateGeo();
       });
@@ -1630,8 +1707,7 @@ function createSequenceGallery(prefix, samples) {
   return { init, initPoseOverlay, initVideoFallback };
 }
 
-const outdoorGallery = createSequenceGallery("outdoor", outdoorSamples);
-const colleagueGallery = createSequenceGallery("colleague", colleagueSamples);
+const outdoorGallery = createSequenceGallery("outdoor", [...colleagueSamples, ...outdoorSamples]);
 
 function initT2I() {
   const tabs = document.querySelector("#t2i-tabs");
@@ -1640,7 +1716,7 @@ function initT2I() {
     button.type = "button";
     button.role = "tab";
     button.dataset.key = sample.key;
-    button.innerHTML = `<img src="${sample.rgb}" alt="" loading="lazy" /><span>${String(index + 1).padStart(2, "0")} · ${sample.tab}</span>`;
+    button.innerHTML = `<img src="${sample.rgb}" alt="" loading="lazy" decoding="async" /><span>${String(index + 1).padStart(2, "0")} · ${sample.tab}</span>`;
     button.addEventListener("click", () => selectT2I(index));
     tabs.appendChild(button);
   });
@@ -1898,12 +1974,13 @@ async function loadComparePose(sample) {
 function setCompareSource(video, source) {
   if (!video) return;
   video.poster = source.replace(/\.mp4$/, "_poster.jpg");
+  if (deferVideoSource(video, () => setCompareSource(video, source))) return;
   video.pause();
   const mp4 = document.createElement("source");
   mp4.src = source.includes("assets/compare/videos/") && source.endsWith("_wan21.mp4")
     ? source.replace("_wan21.mp4", "_wan21_compat.mp4") : source;
   mp4.type = "video/mp4";
-  video.preload = "auto";
+  video.preload = "metadata";
   video.replaceChildren(mp4, document.createTextNode("Your browser does not support HTML5 video playback."));
   video.load();
 }
@@ -1986,7 +2063,7 @@ function initCompare() {
     button.type = "button";
     button.role = "tab";
     button.dataset.key = sample.key;
-    button.innerHTML = `<img src="${sample.videos.ours.replace(/\.mp4$/, "_poster.jpg")}" alt="" loading="lazy" /><span><b>${String(index + 1).padStart(2, "0")} · ${sample.tab}</b></span>`;
+    button.innerHTML = `<img src="${sample.videos.ours.replace(/\.mp4$/, "_poster.jpg")}" alt="" loading="lazy" decoding="async" /><span><b>${String(index + 1).padStart(2, "0")} · ${sample.tab}</b></span>`;
     button.addEventListener("click", () => selectCompare(index));
     tabs.appendChild(button);
   });
@@ -2095,7 +2172,7 @@ function initCloud() {
     button.type = "button";
     button.role = "tab";
     button.dataset.key = sample.key;
-    button.innerHTML = `<img src="assets/compare/pointclouds/lb_pc_${sample.scene}_poster.jpg" alt="" loading="lazy" /><span><b>${String(index + 1).padStart(2, "0")} · ${sample.tab}</b></span>`;
+    button.innerHTML = `<img src="assets/compare/pointclouds/lb_pc_${sample.scene}_poster.jpg" alt="" loading="lazy" decoding="async" /><span><b>${String(index + 1).padStart(2, "0")} · ${sample.tab}</b></span>`;
     button.addEventListener("click", () => selectCloud(index));
     tabs.appendChild(button);
   });
@@ -2253,7 +2330,7 @@ function drawIndependent3DPose(key) {
   ctx.strokeRect(ex - 5, ey - 5, 10, 10);
 
   ctx.font = "700 11px Inter, system-ui, sans-serif";
-  ctx.fillStyle = "#465260";
+  ctx.fillStyle = document.body.dataset.theme === "dark" ? "#c5cdd6" : "#465260";
   ctx.fillText("TARGET", 14, 19);
   ctx.fillStyle = color;
   ctx.fillText("RECOVERED ×" + independent3DPoseData.displayResidualScale, 76, 19);
@@ -2369,7 +2446,7 @@ function initIndependent3D() {
     button.type = "button";
     button.role = "tab";
     button.dataset.key = sample.key;
-    button.innerHTML = '<img src="' + sample.reference + '" alt="" loading="lazy" /><span><b>' +
+    button.innerHTML = '<img src="' + sample.reference + '" alt="" loading="lazy" decoding="async" /><span><b>' +
       String(index + 1).padStart(2, "0") + " · " + sample.tab + "</b></span>";
     button.addEventListener("click", () => selectIndependent3D(index));
     tabs.appendChild(button);
@@ -2411,13 +2488,10 @@ function initVideoFallback() {
 
 initVideoFallback();
 outdoorGallery.initVideoFallback();
-colleagueGallery.initVideoFallback();
 initPoseOverlay();
 outdoorGallery.initPoseOverlay();
-colleagueGallery.initPoseOverlay();
 initI2V();
 outdoorGallery.init();
-colleagueGallery.init();
   initCompare();
   initCloud();
   initIndependent3D();
@@ -2428,54 +2502,87 @@ initPageChrome();
 function initTeaser() {
   const buttons = document.querySelector('#teaser-scenes');
   const videos = ['rgb', 'progressive'].map(kind => document.querySelector('#teaser-' + kind));
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let selected = 0;
+  const playButton = document.querySelector('#teaser-play');
+  const seek = document.querySelector('#teaser-seek');
+  const time = document.querySelector('#teaser-time');
   let visible = false;
+  let wanted = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let changing = false;
+  let animation = 0;
+  function pauseBoth() {
+    videos.forEach(video => video.pause());
+    cancelAnimationFrame(animation);
+  }
+  function tick() {
+    const [leader, follower] = videos;
+    if (leader.ended || follower.ended) {
+      pauseBoth();
+      videos.forEach(video => { video.currentTime = 0; });
+      resume();
+      return;
+    }
+    if (Math.abs(leader.currentTime - follower.currentTime) > .075) follower.currentTime = leader.currentTime;
+    seek.value = Math.round(leader.currentTime * 1000);
+    time.textContent = `0:0${Math.min(5, Math.floor(leader.currentTime))} / 0:06`;
+    animation = requestAnimationFrame(tick);
+  }
+  function resume() {
+    playButton.textContent = wanted ? 'Pause' : 'Play';
+    playButton.setAttribute('aria-label', wanted ? 'Pause both videos' : 'Play both videos');
+    if (changing || !wanted || !visible || document.hidden || videos.some(video => video.readyState < 3 || video.seeking)) return;
+    videos.forEach(video => video.play().catch(() => {}));
+    cancelAnimationFrame(animation);
+    animation = requestAnimationFrame(tick);
+  }
   function select(index) {
-    selected = index;
     const sample = teaserSamples[index];
     changing = true;
+    pauseBoth();
     videos.forEach((video, i) => {
-      const source = sample[i === 0 ? 'rgb' : 'progressive'];
-      video.pause();
-      video.src = source;
-      video.poster = source.replace('.mp4', '_poster.jpg');
+      const kind = i === 0 ? 'rgb' : 'progressive';
+      video.poster = sample[kind + 'Poster'];
+      video.preload = 'auto';
+      video.src = sample[kind];
       video.load();
-      if (visible && !reducedMotion) video.play().catch(() => {});
     });
     changing = false;
+    seek.value = 0;
+    time.textContent = '0:00 / 0:06';
     document.querySelector('#teaser-title').textContent = `${String(index + 1).padStart(2, '0')} · ${sample.label}`;
     [...buttons.children].forEach((button, i) => {
       button.classList.toggle('active', i === index);
       button.setAttribute('aria-pressed', String(i === index));
     });
+    resume();
   }
   teaserSamples.forEach((sample, index) => {
     const button = document.createElement('button');
     button.type = 'button';
-    button.innerHTML = `<img src="${sample.rgb.replace('.mp4', '_poster.jpg')}" alt="" loading="lazy"><span>${String(index + 1).padStart(2, "0")} · ${sample.label}</span>`;
+    button.innerHTML = `<img src="${sample.rgbPoster}" alt="" loading="lazy" decoding="async"><span>${String(index + 1).padStart(2, '0')} · ${sample.label}</span>`;
     button.addEventListener('click', () => select(index));
     buttons.appendChild(button);
   });
-  videos.forEach((video, index) => {
-    const other = videos[1 - index];
-    video.addEventListener('play', () => { if (!changing && other.paused) other.play().catch(() => {}); });
-    video.addEventListener('pause', () => { if (!changing && !other.paused) other.pause(); });
-    video.addEventListener('seeked', () => {
-      if (changing || !video.duration || !other.duration) return;
-      const target = video.currentTime / video.duration * other.duration;
-      if (Math.abs(other.currentTime - target) > .3) other.currentTime = target;
+  playButton.addEventListener('click', () => { wanted = !wanted; if (!wanted) pauseBoth(); resume(); });
+  seek.addEventListener('input', () => {
+    pauseBoth();
+    videos.forEach(video => { if (Number.isFinite(video.duration)) video.currentTime = Math.min(Number(seek.value) / 1000, 5.999); });
+    time.textContent = `0:0${Math.min(6, Math.floor(Number(seek.value) / 1000))} / 0:06`;
+    resume();
+  });
+  videos.forEach(video => {
+    video.addEventListener('waiting', pauseBoth);
+    video.addEventListener('canplay', resume);
+    video.addEventListener('seeked', resume);
+    video.addEventListener('ended', () => {
+      pauseBoth(); videos.forEach(item => { item.currentTime = 0; }); resume();
     });
   });
   new IntersectionObserver(entries => {
     visible = entries[0].isIntersecting;
-    videos.forEach(video => {
-      if (visible && !reducedMotion) video.play().catch(() => {});
-      else video.pause();
-    });
-  }, { threshold: .15 }).observe(document.querySelector('#teaser'));
-  select(selected);
+    if (visible) resume(); else pauseBoth();
+  }, {threshold: .1}).observe(document.querySelector('.teaser-pair'));
+  document.addEventListener('visibilitychange', () => { if (document.hidden) pauseBoth(); else resume(); });
+  select(0);
 }
 initTeaser();
 
@@ -2497,7 +2604,7 @@ return {  };
       }
     });
   }, {threshold: 0.05});
-  document.querySelectorAll('video:not([data-hero-output])').forEach(video => {
+  document.querySelectorAll('video:not([data-hero-output]):not([data-teaser-output])').forEach(video => {
     observer.observe(video);
     video.addEventListener('play', () => { if (!visible.has(video)) video.pause(); });
   });

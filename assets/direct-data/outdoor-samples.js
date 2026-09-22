@@ -41,7 +41,7 @@ window.NGD_OUTDOOR_SAMPLES = [
     "poseData": "assets/outdoor/pose-data/mvssynth_0000.json",
     "caption": "A forward drive across a wide downtown intersection toward a distant skyline. Road markings, curbs, and building facades stay coherent across all 81 GAE-predicted frames; the sky backdrop is removed from the reconstructed point cloud.",
     "metrics": [
-      "81 predicted frames · 16 fps",
+      "81 predicted frames \u00b7 16 fps",
       "direct pose nATE 1.17%",
       "672 x 378 RGB + depth",
       "84k-point GAE geometry"
@@ -60,7 +60,7 @@ window.NGD_OUTDOOR_SAMPLES = [
     "poseData": "assets/outdoor/pose-data/mvssynth_0006.json",
     "caption": "A sunlit avenue traversal past low buildings and palm rows, with stable road and curb geometry as the camera moves forward.",
     "metrics": [
-      "81 predicted frames · 16 fps",
+      "81 predicted frames \u00b7 16 fps",
       "direct pose nATE 3.35%",
       "672 x 378 RGB + depth",
       "171k-point GAE geometry"
@@ -79,7 +79,7 @@ window.NGD_OUTDOOR_SAMPLES = [
     "poseData": "assets/outdoor/pose-data/mvssynth_0010.json",
     "caption": "An industrial stretch under power lines and an elevated structure, retaining pole, cable, and roadway geometry through the forward motion.",
     "metrics": [
-      "81 predicted frames · 16 fps",
+      "81 predicted frames \u00b7 16 fps",
       "direct pose nATE 1.81%",
       "672 x 378 RGB + depth",
       "196k-point GAE geometry"
@@ -98,7 +98,7 @@ window.NGD_OUTDOOR_SAMPLES = [
     "poseData": "assets/outdoor/pose-data/mvssynth_0011.json",
     "caption": "The trajectory crosses an intersection beside a reflective glass office tower, holding facade and curb structure under strong reflections.",
     "metrics": [
-      "81 predicted frames · 16 fps",
+      "81 predicted frames \u00b7 16 fps",
       "direct pose nATE 3.29%",
       "672 x 378 RGB + depth",
       "83k-point GAE geometry"
@@ -117,30 +117,11 @@ window.NGD_OUTDOOR_SAMPLES = [
     "poseData": "assets/outdoor/pose-data/mvssynth_0015.json",
     "caption": "A residential-scale corner threaded with utility poles and cables, retaining fine wire and facade geometry under the forward camera move.",
     "metrics": [
-      "81 predicted frames · 16 fps",
+      "81 predicted frames \u00b7 16 fps",
       "direct pose nATE 5.63%",
       "672 x 378 RGB + depth",
       "304k-point GAE geometry"
     ],
     "displayNumber": 7
-  },
-  {
-    "key": "mvssynth_0021",
-    "tab": "Civic avenue",
-    "title": "Civic avenue",
-    "domain": "MVS-Synth",
-    "rgb": "assets/outdoor/videos/mvssynth_0021_rgb.mp4",
-    "depth": "assets/outdoor/videos/mvssynth_0021_depth.mp4",
-    "progressive": "assets/outdoor/videos/mvssynth_0021_progressive.mp4",
-    "pose": "assets/outdoor/poses/mvssynth_0021_pose.png",
-    "poseData": "assets/outdoor/pose-data/mvssynth_0021.json",
-    "caption": "A broad avenue leading toward a domed civic building, preserving road, median, and facade geometry over all 81 predicted views.",
-    "metrics": [
-      "81 predicted frames · 16 fps",
-      "direct pose nATE 5.16%",
-      "672 x 378 RGB + depth",
-      "119k-point GAE geometry"
-    ],
-    "displayNumber": 8
   }
 ];

@@ -1,6 +1,6 @@
 (() => {
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  for (const id of ['colleague-tabs', 'outdoor-tabs', 'compare-tabs']) {
+  for (const id of ['compare-tabs']) {
     const track = document.getElementById(id);
     if (!track) continue;
     const wrapper = document.createElement('div');
@@ -82,3 +82,21 @@
     });
   }
 })();
+
+// The combined outdoor gallery is a wrapping grid rather than a carousel.
+document.getElementById('outdoor-tabs')?.addEventListener('keydown', event => {
+  const grid = event.currentTarget;
+  const buttons = [...grid.querySelectorAll('button')];
+  const index = buttons.indexOf(event.target);
+  if (index < 0) return;
+  const columns = getComputedStyle(grid).gridTemplateColumns.split(' ').length;
+  const offsets = {ArrowRight: 1, ArrowLeft: -1, ArrowDown: columns, ArrowUp: -columns};
+  let next;
+  if (event.key === 'Home') next = 0;
+  else if (event.key === 'End') next = buttons.length - 1;
+  else if (event.key in offsets) next = Math.max(0, Math.min(buttons.length - 1, index + offsets[event.key]));
+  else return;
+  event.preventDefault();
+  buttons[next].click();
+  buttons[next].focus({preventScroll: true});
+});
