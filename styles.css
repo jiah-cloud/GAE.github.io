@@ -2946,3 +2946,42 @@ body[data-theme="dark"] .citation-card .text-link:hover { color: #fff; border-co
  #method .method-steps article > span { margin-bottom: 16px; }
 }
 @media (max-width: 600px) { #method .method-steps { grid-template-columns: 1fr; } }
+
+/* Shared timeline controls and full-frame, synchronized pose mode. */
+.sequence-playback { padding: 14px 0; }
+canvas.sequence-pose { position: static; display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; border-radius: 0; max-width: none; }
+canvas.sequence-pose[hidden] { display: none; }
+.teaser-pair figcaption { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+#teaser-media-toggle { margin-left:auto; }
+#teaser-media-toggle button { padding:4px 10px; font-size:11px; }
+.teaser-pair figcaption { min-height: 66px; box-sizing: border-box; }
+canvas.sequence-pose { opacity: 1; box-shadow: none; }
+.teaser-pair video[hidden] { display: none; }
+@media (max-width: 600px) {
+  .teaser-pair figcaption { min-height: 90px; flex-wrap: wrap; align-content: center; gap: 8px; }
+  #teaser-media-toggle { margin-left: 0; }
+  #teaser-media-toggle button { padding: 4px 7px; font-size: 10px; }
+}
+
+/* Project film and summary share a row; keep the film's original 16:9 frame. */
+.tldr.tldr-with-video {
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  align-items: center;
+  gap: clamp(24px, 3vw, 44px);
+  padding: clamp(20px, 2.5vw, 32px);
+}
+.tldr-film { min-width: 0; margin: 0; }
+.tldr-film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #0d111b; border-radius: 10px; }
+.tldr-film figcaption { display: flex; justify-content: space-between; gap: 16px; margin-top: 12px; color: var(--muted); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; }
+.tldr-copy { padding-bottom: 24px; }
+.tldr-copy .tldr-label { margin: 0 0 20px; color: var(--acid); }
+.tldr-lead { margin: 0; font-family: "Iowan Old Style", Georgia, serif; font-size: clamp(24px, 2.15vw, 31px); line-height: 1.22; letter-spacing: -.025em; }
+.tldr-lead em { color: var(--acid); font-weight: 600; }
+.tldr-detail { margin: 20px 0 0; color: var(--muted); font-size: 15px; line-height: 1.65; }
+@media (max-width: 850px) {
+  .tldr.tldr-with-video { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .tldr-copy { padding-bottom: 4px; }
+  .tldr-copy .tldr-label { margin-bottom: 14px; }
+  .tldr-lead { font-size: clamp(25px, 4vw, 31px); }
+  .tldr-detail { margin-top: 16px; }
+}

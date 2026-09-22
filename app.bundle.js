@@ -1130,6 +1130,27 @@ const {  cloudSamples, cloudArms  } = module6;
 const {  colleagueSamples  } = module7;
 const {  independent3DSamples, independent3DMethods  } = module8;
 
+// Merge only exactly matched source cases; preserve existing authored metadata.
+for (const sample of [...teaserSamples, ...i2vSamples, ...colleagueSamples, ...outdoorSamples]) {
+  sample.metrics = sample.metrics?.map(metric => /frames.*fps/.test(metric) ? "81 views · 6 s synchronized" : metric);
+  const extra = window.NGD_SEQUENCE_EXTRAS?.[sample.key];
+  if (extra) {
+    sample.depth = extra.depth; sample.pose = extra.pose; sample.poseData = extra.poseData;
+    window.NGD_DIRECT_POSES[sample.poseData] = extra.data;
+  }
+}
+const sequencePlayers = new Map();
+function sequencePlayer(prefix) {
+  if (!sequencePlayers.has(prefix)) sequencePlayers.set(prefix, window.createSequencePlayer({
+    left: document.querySelector(`#${prefix}-video`),
+    right: document.querySelector(`#${prefix}-progressive-video`),
+    host: document.querySelector(`#${prefix}-video`).closest('.media-panel'),
+    canvas: document.querySelector(`#${prefix}-pose-overlay`),
+    image: document.querySelector(`#${prefix}-pose`),
+  }));
+  return sequencePlayers.get(prefix);
+}
+
 function setActive(container, key) {
   container.querySelectorAll("button").forEach((button) => {
     const active = button.dataset.key === key;
@@ -1361,21 +1382,8 @@ function initPoseOverlay() {
 
 function updateI2VMedia() {
   const sample = i2vSamples[currentI2V];
-  const video = document.querySelector("#i2v-video");
-  const pose = document.querySelector("#i2v-pose");
-  const showingPose = currentI2VMode === "pose";
-  const overlay = document.querySelector("#i2v-pose-overlay");
-  video.hidden = showingPose;
-  pose.hidden = !showingPose;
-  overlay.hidden = true;
-  if (showingPose) {
-    video.pause();
-    pose.src = poseSource(sample);
-    pose.alt = sample.title + " — input camera pose trajectory";
-  } else {
-    swapVideo(video, sample[currentI2VMode]);
-    drawPoseOverlay();
-  }
+  updateMediaToggle(document.querySelector('#i2v-media-toggle'), sample, currentI2VMode);
+  sequencePlayer('i2v').select(sample, currentI2VMode);
 }
 
 const viewerById = {};
@@ -1493,28 +1501,8 @@ function initI2V() {
   updateI2VGeo();
 }
 
-function setProgressiveVideo(sample) {
-  const video = document.querySelector("#i2v-progressive-video");
-  if (!video || !sample.progressive) return;
-  const source = sample.progressive;
-  video.poster = source.replace(/\.mp4$/, "_poster.jpg");
-  if (deferVideoSource(video, () => setProgressiveVideo(sample))) return;
-  video.pause();
-  video.removeAttribute("src");
-  const mp4 = document.createElement("source");
-  mp4.src = source;
-  mp4.type = "video/mp4";
-  video.replaceChildren(mp4, document.createTextNode("Your browser does not support HTML5 video playback."));
-  video.load();
-  if (currentI2VGeoMode === "progressive") {
-    const play = video.play();
-    if (play) play.catch(() => {});
-  }
-}
-
-function updateI2VGeo() {
-  document.querySelector('#i2v-progressive-video')?.play().catch(() => {});
-}
+function setProgressiveVideo() { /* Sources are owned by the shared timeline. */ }
+function updateI2VGeo() {}
 
 function selectI2V(index) {
   currentI2V = index;
@@ -1525,7 +1513,6 @@ function selectI2V(index) {
   document.querySelector("#i2v-metrics").innerHTML = sample.metrics.map((metric) => `<span>${metric}</span>`).join("");
   if (!sample[currentI2VMode]) currentI2VMode = "rgb";
   updateMediaToggle(document.querySelector('#i2v-media-toggle'), sample, currentI2VMode);
-  loadPoseOverlay(sample);
   updateI2VMedia();
   setProgressiveVideo(sample);
 
@@ -1592,49 +1579,11 @@ function createSequenceGallery(prefix, samples) {
   }
 
   function updateMedia() {
-    const sample = samples[current];
-    const video = element("video");
-    const pose = element("pose");
-    const showingPose = currentMode === "pose";
-    const overlay = element("pose-overlay");
-    video.hidden = showingPose;
-    pose.hidden = !showingPose;
-    overlay.hidden = true;
-    if (showingPose) {
-      video.pause();
-      pose.src = sample.pose;
-      pose.alt = sample.title + " — input camera pose trajectory";
-    } else {
-      swapVideo(video, sample[currentMode], `#${prefix}-video-open`);
-      drawPoseOverlay();
-    }
+    updateMediaToggle(element('media-toggle'), samples[current], currentMode);
+    sequencePlayer(prefix).select(samples[current], currentMode);
   }
-
-  function setProgressiveVideo(sample) {
-    const video = element("progressive-video");
-    if (!video || !sample.progressive) return;
-    const source = sample.progressive;
-    video.poster = source.replace(/\.mp4$/, "_poster.jpg");
-  if (deferVideoSource(video, () => setProgressiveVideo(sample))) return;
-    video.pause();
-    video.removeAttribute("src");
-    const mp4 = document.createElement("source");
-    mp4.src = source;
-    mp4.type = "video/mp4";
-    video.replaceChildren(
-      mp4,
-      document.createTextNode("Your browser does not support HTML5 video playback."),
-    );
-    video.load();
-    if (currentGeoMode === "progressive") {
-      const play = video.play();
-      if (play) play.catch(() => {});
-    }
-  }
-
-  function updateGeo() {
-    element('progressive-video')?.play().catch(() => {});
-  }
+  function setProgressiveVideo() {}
+  function updateGeo() {}
 
   function select(index) {
     current = index;
@@ -1647,8 +1596,7 @@ function createSequenceGallery(prefix, samples) {
       .join("");
     if (!sample[currentMode]) currentMode = "rgb";
     updateMediaToggle(element('media-toggle'), sample, currentMode);
-    loadPoseOverlay(sample);
-    updateMedia();
+      updateMedia();
     setProgressiveVideo(sample);
   }
 
@@ -2488,8 +2436,6 @@ function initVideoFallback() {
 
 initVideoFallback();
 outdoorGallery.initVideoFallback();
-initPoseOverlay();
-outdoorGallery.initPoseOverlay();
 initI2V();
 outdoorGallery.init();
   initCompare();
@@ -2500,87 +2446,30 @@ initPageChrome();
 
 function initTeaser() {
   const buttons = document.querySelector('#teaser-scenes');
-  const videos = ['rgb', 'progressive'].map(kind => document.querySelector('#teaser-' + kind));
-  const playButton = document.querySelector('#teaser-play');
-  const seek = document.querySelector('#teaser-seek');
-  const time = document.querySelector('#teaser-time');
-  let visible = false;
-  let wanted = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let changing = false;
-  let animation = 0;
-  function pauseBoth() {
-    videos.forEach(video => video.pause());
-    cancelAnimationFrame(animation);
-  }
-  function tick() {
-    const [leader, follower] = videos;
-    if (leader.ended || follower.ended) {
-      pauseBoth();
-      videos.forEach(video => { video.currentTime = 0; });
-      resume();
-      return;
-    }
-    if (Math.abs(leader.currentTime - follower.currentTime) > .075) follower.currentTime = leader.currentTime;
-    seek.value = Math.round(leader.currentTime * 1000);
-    time.textContent = `0:0${Math.min(5, Math.floor(leader.currentTime))} / 0:06`;
-    animation = requestAnimationFrame(tick);
-  }
-  function resume() {
-    playButton.textContent = wanted ? 'Pause' : 'Play';
-    playButton.setAttribute('aria-label', wanted ? 'Pause both videos' : 'Play both videos');
-    if (changing || !wanted || !visible || document.hidden || videos.some(video => video.readyState < 3 || video.seeking)) return;
-    videos.forEach(video => video.play().catch(() => {}));
-    cancelAnimationFrame(animation);
-    animation = requestAnimationFrame(tick);
-  }
+  const left = document.querySelector('#teaser-rgb');
+  const caption = left.previousElementSibling;
+  const label = document.createElement('span'); label.textContent='RGB video';
+  caption.replaceChildren(label);
+  const toggle = document.createElement('div'); toggle.className='segmented';
+  toggle.id='teaser-media-toggle'; toggle.setAttribute('aria-label','Video representation');
+  toggle.innerHTML='<button data-mode="rgb">RGB</button><button data-mode="depth">Depth</button><button data-mode="pose">Pose</button>';
+  caption.append(toggle);
+  const player = window.createSequencePlayer({left, right:document.querySelector('#teaser-progressive'),
+    host:document.querySelector('.teaser-pair'), controls:document.querySelector('.teaser-playback'), label});
+  let current=0, mode='rgb';
   function select(index) {
-    const sample = teaserSamples[index];
-    changing = true;
-    pauseBoth();
-    videos.forEach((video, i) => {
-      const kind = i === 0 ? 'rgb' : 'progressive';
-      video.poster = sample[kind + 'Poster'];
-      video.preload = 'auto';
-      video.src = sample[kind];
-      video.load();
-    });
-    changing = false;
-    seek.value = 0;
-    time.textContent = '0:00 / 0:06';
-    document.querySelector('#teaser-title').textContent = `${String(index + 1).padStart(2, '0')} · ${sample.label}`;
-    [...buttons.children].forEach((button, i) => {
-      button.classList.toggle('active', i === index);
-      button.setAttribute('aria-pressed', String(i === index));
-    });
-    resume();
+    current=index; const sample=teaserSamples[index];
+    if (!sample[mode]) mode='rgb';
+    updateMediaToggle(toggle,sample,mode); player.select(sample,mode);
+    document.querySelector('#teaser-title').textContent=`${String(index+1).padStart(2,'0')} · ${sample.label}`;
+    [...buttons.children].forEach((button,i)=>{button.classList.toggle('active',i===index);button.setAttribute('aria-pressed',String(i===index));});
   }
-  teaserSamples.forEach((sample, index) => {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.innerHTML = `<img src="${sample.rgbPoster}" alt="" loading="lazy" decoding="async"><span>${String(index + 1).padStart(2, '0')} · ${sample.label}</span>`;
-    button.addEventListener('click', () => select(index));
-    buttons.appendChild(button);
+  toggle.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.mode;select(current);}));
+  teaserSamples.forEach((sample,index)=>{
+    const button=document.createElement('button');button.type='button';
+    button.innerHTML=`<img src="${sample.rgbPoster}" alt="" loading="lazy" decoding="async"><span>${String(index+1).padStart(2,'0')} · ${sample.label}</span>`;
+    button.addEventListener('click',()=>select(index));buttons.append(button);
   });
-  playButton.addEventListener('click', () => { wanted = !wanted; if (!wanted) pauseBoth(); resume(); });
-  seek.addEventListener('input', () => {
-    pauseBoth();
-    videos.forEach(video => { if (Number.isFinite(video.duration)) video.currentTime = Math.min(Number(seek.value) / 1000, 5.999); });
-    time.textContent = `0:0${Math.min(6, Math.floor(Number(seek.value) / 1000))} / 0:06`;
-    resume();
-  });
-  videos.forEach(video => {
-    video.addEventListener('waiting', pauseBoth);
-    video.addEventListener('canplay', resume);
-    video.addEventListener('seeked', resume);
-    video.addEventListener('ended', () => {
-      pauseBoth(); videos.forEach(item => { item.currentTime = 0; }); resume();
-    });
-  });
-  new IntersectionObserver(entries => {
-    visible = entries[0].isIntersecting;
-    if (visible) resume(); else pauseBoth();
-  }, {threshold: .1}).observe(document.querySelector('.teaser-pair'));
-  document.addEventListener('visibilitychange', () => { if (document.hidden) pauseBoth(); else resume(); });
   select(0);
 }
 initTeaser();
@@ -2603,7 +2492,7 @@ return {  };
       }
     });
   }, {threshold: 0.05});
-  document.querySelectorAll('video:not([data-hero-output]):not([data-teaser-output])').forEach(video => {
+  document.querySelectorAll('video:not([data-hero-output]):not([data-teaser-output]):not([data-sequence-output]):not([data-summary-output])').forEach(video => {
     observer.observe(video);
     video.addEventListener('play', () => { if (!visible.has(video)) video.pause(); });
   });

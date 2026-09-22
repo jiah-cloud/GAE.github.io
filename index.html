@@ -15,7 +15,7 @@
     />
     <meta property="og:image" content="assets/t2i/images/geisha_rgb.png" />
     <title>GAE · Geometry-Native World Generation</title>
-    <link rel="stylesheet" href="styles.css?v=20260922method" />
+    <link rel="stylesheet" href="styles.css?v=20260922film" />
   </head>
   <body data-theme="dark">
     <div class="grain" aria-hidden="true"></div>
@@ -167,15 +167,23 @@
         <div class="teaser-scenes" id="teaser-scenes" aria-label="Featured scenes"></div>
       </section>
 
-      <section class="tldr section-shell reveal" aria-label="Summary">
-        <p class="tldr-label">TL;DR</p>
-        <p>
-          Put geometry <em>inside the generated latent</em>, not around an
-          appearance-only latent as an external constraint. GAE compresses 3,072-channel
-          geometry features to a structured 128-channel state that remains decodable to
-          both RGB and geometry.
-        </p>
-        <div class="tldr-arrow" aria-hidden="true">↘</div>
+      <section class="tldr tldr-with-video section-shell reveal" aria-label="Project video and summary">
+        <figure class="tldr-film">
+          <video id="overview-video" data-summary-output controls playsinline preload="none"
+            poster="assets/overview/GAE-teaser-poster.jpg" width="1920" height="1080"
+            aria-label="GAE project overview video, 1 minute 32 seconds">
+            <source src="assets/overview/GAE-teaser-final-1080p.mp4" type="video/mp4" />
+            <a href="assets/overview/GAE-teaser-final-1080p.mp4">Watch the GAE project video</a>
+          </video>
+          <figcaption><span>Project video</span><span>1:32 · 1080p</span></figcaption>
+        </figure>
+        <div class="tldr-copy">
+          <p class="tldr-label">TL;DR</p>
+          <p class="tldr-lead">Put geometry <em>inside the generated latent</em>, not around an
+            appearance-only latent as an external constraint.</p>
+          <p class="tldr-detail">GAE compresses 3,072-channel geometry features to a structured
+            128-channel state that remains decodable to both RGB and geometry.</p>
+        </div>
       </section>
 
       <section class="latent section-shell latent-feature" id="latent">
@@ -551,7 +559,9 @@
     <script src="assets/direct-data/compare-poses.js?v=20260919e" defer></script>
     <script src="output-quality-radar.bundle.js?v=20260921cmp" defer></script>
     <script src="image-viewer.bundle.js?v=20260921" defer></script>
-    <script src="app.bundle.js?v=20260922method" defer></script>
+    <script src="assets/direct-data/sequence-extras.js?v=20260922sync" defer></script>
+    <script src="sequence-player.js?v=20260922sync" defer></script>
+    <script src="app.bundle.js?v=20260922film" defer></script>
     <script src="hero-showcase.js?v=20260922orbit" defer></script>
     <script src="case-navigation.js?v=20260922grid" defer></script>
     <script src="chapter-navigation.js?v=20260922hover" defer></script>
