@@ -1,0 +1,54 @@
+{
+  "case_key": "world-089",
+  "title": "Village street",
+  "status": "\u76f4\u63a5\u627e\u5230",
+  "dataset": "iv3/omniworld_game_packed",
+  "eval_index": 89,
+  "source_pose_archive": "/threed-code/jiahaolu/GLD/results/lm-eval-sep/d64/step0013000/iv3/omniworld_game_packed/scannetpp/089_poses.npz",
+  "source_geometry_archive": null,
+  "source_scene": "/threed-code/public_datasets/Geometry_diffusion_data/omniworld_game_packed/train/6d8a47afa1ea_split38",
+  "source_pose_metadata": "/threed-code/public_datasets/Geometry_diffusion_data/omniworld_game_packed/train/6d8a47afa1ea_split38/meta.json",
+  "evidence_path": "/threed-code/jiahaolu/GLD/results/lm-eval-sep/d64/step0013000/gpu2_omniworld_game_packed_sweep.log",
+  "metrics_path": "/threed-code/jiahaolu/GLD/results/lm-eval-sep/d64/step0013000/iv3/omniworld_game_packed/metrics.json",
+  "checkpoint": "/threed-code/jiahaolu/GLD/results/latent-diffusion-v4-rae-multids-da3metric-672x378-temporal-giant64-d64-geo-main-v81-omni-nosf-motion-shift6-stvae0038k-largemotion-init1500/004-V4RAE-enc[768, 2048]-dec[768, 2048]-d[28, 6]+[28, 6]-v81-bf16/checkpoints/0013000.pt",
+  "config": "/threed-code/jiahaolu/GLD/configs/training/latent_diffusion_v4_rae_multids_672x378_temporal_giant64_d64_repa_dual_w02_nowhiten_v81_cond14_fl_da3metric_motionft_cond1_from_i2vgiant64_geo_main_v81_omniworld_stvae0038k_largemotion.yaml",
+  "reference_trajectory_type": "dataset-provided metric input/reference trajectory",
+  "reference_is_ground_truth": false,
+  "coordinate_representation": "camera-to-world homogeneous 4x4 matrices",
+  "coordinate_convention": "opencv_c2w",
+  "scale_and_units": "metric-scale source trajectory; translation unit documented as metric by source",
+  "exported_pose_transform": "none; input_c2w is byte-equivalent numerically to the 81 selected source c2w matrices",
+  "display_alignment": "none",
+  "model_pose_normalization": "not baked into input_c2w; this export preserves the raw eval input/reference trajectory",
+  "input_K_image_size_hw": [
+    378,
+    672
+  ],
+  "source_camera_image_size_hw": [
+    720,
+    1280
+  ],
+  "frame_count": 81,
+  "frame_start": 0,
+  "frame_interval": 3,
+  "source_fps": 24.0,
+  "conditioning": {
+    "cond_num": 1,
+    "conditioning_eval_indices": [
+      0
+    ],
+    "conditioning_frame_included": true
+  },
+  "correspondence_evidence": "eval *_poses.npz contains input_c2w/input_K and matches selected source metadata exactly (max abs c2w error 0.0)",
+  "validation": {
+    "input": {
+      "max_homogeneous_last_row_error": 0.0,
+      "max_rotation_orthogonality_error": 6.207293234972155e-08,
+      "max_rotation_determinant_error": 7.303824078874754e-08
+    },
+    "predicted": null
+  },
+  "depth_video": null,
+  "synthetic_trajectory": false,
+  "designed_trajectory": null
+}

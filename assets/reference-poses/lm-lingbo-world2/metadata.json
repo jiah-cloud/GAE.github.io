@@ -1,0 +1,62 @@
+{
+  "case_key": "lm-lingbo-world2",
+  "title": "Village gate",
+  "status": "\u4ece\u539f\u59cb\u6570\u636e\u6062\u590d\u5bfc\u51fa",
+  "dataset": "large-motion-v1-page-eval",
+  "eval_index": 0,
+  "source_pose_archive": "/threed-code/minghaoyin/GLD/results/large-motion-v1-page-eval/0002000/20260904_224943/eval/shard_2/case_000/scannetpp/000_poses.npz",
+  "source_geometry_archive": "/threed-code/minghaoyin/GLD/results/large-motion-v1-page-eval/0002000/20260904_224943/eval/shard_2/case_000/scannetpp/000_geom.npz",
+  "source_scene": "/threed-code/public_datasets/Geometry_diffusion_data/large_motion_v1_packed/lingbot_mp4__lingbo_world2/chunk_000",
+  "source_pose_metadata": "/threed-code/public_datasets/Geometry_diffusion_data/large_motion_v1_packed/lingbot_mp4__lingbo_world2/chunk_000/meta_da3_metric.json",
+  "evidence_path": "/threed-code/minghaoyin/GLD/_ICLR2027__native__geometry_diffusion/project-page-direct-galleries-20260920/render-manifest.json",
+  "metrics_path": "/threed-code/minghaoyin/GLD/results/large-motion-v1-page-eval/0002000/20260904_224943/eval/shard_2/case_000/metrics.json",
+  "checkpoint": "/threed-code/minghaoyin/GLD/results/ld-v4-rae-large-motion-v1-v81-giant-spacetime-shift6-2k/000-V4RAE-enc[768, 2048]-dec[768, 2048]-d[28, 6]+[28, 6]-v81-bf16/checkpoints/0002000.pt",
+  "config": "/threed-code/minghaoyin/GLD/configs/training/latent_diffusion_v4_rae_large_motion_v1_v81_giant_spacetime_shift6.yaml",
+  "reference_trajectory_type": "DA3 metric estimated input/reference trajectory",
+  "reference_is_ground_truth": false,
+  "coordinate_representation": "camera-to-world homogeneous 4x4 matrices",
+  "coordinate_convention": "opencv_c2w",
+  "scale_and_units": "metric-scale source trajectory; translation unit documented as metric by source",
+  "exported_pose_transform": "none; input_c2w is byte-equivalent numerically to the 81 selected source c2w matrices",
+  "display_alignment": "none",
+  "model_pose_normalization": "not baked into input_c2w; this export preserves the raw eval input/reference trajectory",
+  "input_K_image_size_hw": [
+    378,
+    672
+  ],
+  "source_camera_image_size_hw": [
+    720,
+    1280
+  ],
+  "frame_count": 81,
+  "frame_start": 0,
+  "frame_interval": 1,
+  "source_fps": 16.0,
+  "conditioning": {
+    "cond_num": 1,
+    "conditioning_eval_indices": [
+      0
+    ],
+    "conditioning_frame_included": true
+  },
+  "correspondence_evidence": "eval *_poses.npz contains input_c2w/input_K and matches selected source metadata exactly (max abs c2w error 0.0)",
+  "validation": {
+    "input": {
+      "max_homogeneous_last_row_error": 0.0,
+      "max_rotation_orthogonality_error": 8.884236901707254e-08,
+      "max_rotation_determinant_error": 1.1223346962907499e-07
+    },
+    "predicted": {
+      "max_homogeneous_last_row_error": 0.0,
+      "max_rotation_orthogonality_error": 1.887379141862766e-15,
+      "max_rotation_determinant_error": 2.3314683517128287e-15
+    }
+  },
+  "depth_video": {
+    "visualization_percentile_low": 0.18220050185918807,
+    "visualization_percentile_high": 2.768595051765443,
+    "fps": 12
+  },
+  "synthetic_trajectory": false,
+  "designed_trajectory": null
+}

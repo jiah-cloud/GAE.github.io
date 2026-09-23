@@ -37,6 +37,7 @@ window.createSequencePlayer = function ({left, right, host, controls, canvas, im
       ctx.globalAlpha=1;ctx.fillStyle=color;ctx.beginPath();ctx.arc(...point(path.xy[index]),6,0,Math.PI*2);ctx.fill();
       ctx.font='14px system-ui';ctx.fillText(name==='input'?'INPUT':'GAE',name==='input'?24:105,h-12);
     }
+    canvas.title = data.referenceType || 'Input/reference and GAE predicted camera trajectories';
   }
   function align(v) {
     if (!valid(v)) return;

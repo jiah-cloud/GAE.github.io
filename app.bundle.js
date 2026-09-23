@@ -1325,7 +1325,7 @@ function drawPoseOverlayInto(canvas, video, data) {
   const nate = data.metrics.ateNormalized * 100;
   ctx.fillStyle = "rgba(255,255,255,.84)";
   ctx.font = "700 13px ui-monospace, SFMono-Regular, Menlo, monospace";
-  ctx.fillText(`Sim(3) nATE ${nate.toFixed(2)}%`, 22, height - 18);
+  ctx.fillText(`nATE ${nate.toFixed(2)}%`, 22, height - 18);
   ctx.textAlign = "right";
   ctx.fillText("INPUT ↔ GAE", width - 22, height - 18);
   ctx.textAlign = "left";

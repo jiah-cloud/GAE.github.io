@@ -34,3 +34,7 @@ for s in samples:
  manifest[key]={'depth':str(rel/'depth.mp4'),'pose':str(rel/'pose.svg'),'poseData':str(rel/'pose.json'),'data':data}
 (ROOT/'assets/direct-data/sequence-extras.js').write_text('window.NGD_SEQUENCE_EXTRAS = '+json.dumps(manifest,separators=(',',':'))+';\n')
 print('Imported',len(manifest),'cases. Missing source:',sorted(set(missing)))
+
+if (ROOT/'assets/reference-poses').exists():
+ import runpy
+ runpy.run_path(str(ROOT/'scripts/build-reference-poses.py'), run_name='__main__')

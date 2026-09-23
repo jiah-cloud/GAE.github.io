@@ -73,7 +73,7 @@
         const [x,y]=project(center(poses[frame]));ctx.fillStyle=color;ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.fill();
       }
       ctx.font='500 19px system-ui, sans-serif';ctx.fillStyle=gtColor;ctx.fillRect(24,26,18,3);ctx.fillText('GT',50,34);ctx.fillStyle=estimatedColor;ctx.fillRect(113,26,18,3);ctx.fillText('Estimated',139,34);
-      ctx.font='16px system-ui, sans-serif';ctx.fillStyle='#b2c2c3';ctx.fillText('Sim(3) aligned',24,353);ctx.textAlign='right';ctx.fillText(`nATE ${(data.metrics.ateNormalized * 100).toFixed(2)}%`,648,353);ctx.textAlign='left';
+      ctx.font='16px system-ui, sans-serif';ctx.fillStyle='#b2c2c3';ctx.textAlign='right';ctx.fillText(`nATE ${(data.metrics.ateNormalized * 100).toFixed(2)}%`,648,353);ctx.textAlign='left';
       canvas.dataset.frame = String(frame + 1);
     };
   }

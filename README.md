@@ -1,33 +1,40 @@
-# GAE galleries — 2026-09-21
+# GAE: Learning a Geometry-Native Latent Space for 3D-Consistent World Generation
 
-Open `index.html` directly or serve this directory with a static HTTP server.
+Source for the GAE project page, featuring the project video, method overview, synchronized RGB/depth/geometry galleries, camera trajectories, and experimental comparisons.
 
-The teaser before TL;DR contains 18 paired RGB / progressive videos: 17 from jiahaoluresults and the former Curated 02 toy-room scene. Existing galleries retain RGB, depth, progressive videos and pose visualization. Video galleries omit PLY assets and interactive point-cloud displays. The OmniWorld section is removed; curated cases 03, 15 and 19 are removed, with original case numbering retained.
+## Local preview
 
-MVS-Synth follows the curated gallery, with original cases 02, 05, 10, 11, 13 and 16 removed. Ten cases remain, retaining their original numbering.
+```bash
+python3 scripts/preview.py
+```
 
-The image gallery restores 20 RGB/depth pairs from gld-page-preview. The pipeline overview and vector PDF are included; the image gallery includes 20 interactive PLY models, loaded on demand, with a PLY download link.
+Open [http://127.0.0.1:8766](http://127.0.0.1:8766). The preview server supports HTTP byte ranges for video seeking. No frontend build step is required.
 
-## Synchronized sequences — 2026-09-22
+## Page files
 
-`sequence-player.js` gives the teaser, Indoor and Outdoor galleries one six-second
-scene timeline per pair. It maps each 81-view video's native duration to that
-timeline, waits for both videos, corrects drift, and shares play/pause, seeking,
-looping and visibility handling. RGB/Depth/Pose switches retain the scene position
-and paused state. Pose mode draws the corresponding camera trajectory frame.
+- `index.html` — page content and layout.
+- `styles.css` — styling and responsive layouts.
+- `app.bundle.js` — galleries and page interactions.
+- `sequence-player.js` — synchronized playback and pose rendering.
+- `assets/` — videos, images, geometry, and scene data.
+- `scripts/` — preview, data preparation, and browser checks.
 
-31 exactly matched depth videos and predicted pose sequences were imported from
-`page0920-depth-pose-slim` into `assets/sequence-extras/`; original pose NPY files
-are retained. `scripts/import-sequence-assets.py` regenerates the browser data
-(with NumPy and FFmpeg). Of 55 displayed cases, 53 now have Depth and Pose.
-The supplied pack does **not** contain `lm-lingbo-forward` (Temple approach) or
-`lm-lingbo-world2` (Village gate); their unavailable modes remain hidden.
+The scene lists for the Indoor and Outdoor galleries are in `assets/direct-data/i2v-samples.js` and `assets/direct-data/outdoor-samples.js`. Featured and curated scene lists are defined in `app.bundle.js`.
 
-Preview with `python3 scripts/preview.py`, then open `http://127.0.0.1:8766`.
-This server supports HTTP byte ranges, which Chrome needs for reliable MP4 seeks;
-a server that ignores Range requests can reset video seeks to the beginning.
-For deployment, use static hosting with byte-range support.
+## Camera trajectories
 
-Browser regression: `node scripts/test-sequence-player.cjs` (Playwright required;
-set `CHROME_PATH` if Chrome is installed elsewhere). It checks different native
-frame rates, pause/seek/mode retention, looping, and all available depth/pose cases.
+INPUT denotes the reference trajectory supplied to generation; GAE denotes the predicted trajectory. Estimated or designed references are not labeled as ground truth. Original arrays and reference provenance are retained in `assets/sequence-extras/` and `assets/reference-poses/`.
+
+## Playback checks
+
+With Node.js, Playwright, and Chrome installed, start the preview server and run:
+
+```bash
+node scripts/test-sequence-player.cjs
+```
+
+Set `CHROME_PATH` if needed. The checks cover playback synchronization, seeking, mode switching, looping, and depth/pose availability.
+
+## Hosting
+
+Serve the files as a static site with HTTP byte-range support for videos. Keep `.nojekyll` when publishing through GitHub Pages.

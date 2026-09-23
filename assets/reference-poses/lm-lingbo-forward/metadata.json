@@ -1,0 +1,67 @@
+{
+  "case_key": "lm-lingbo-forward",
+  "title": "Temple approach",
+  "status": "\u4ece\u539f\u59cb\u6570\u636e\u6062\u590d\u5bfc\u51fa",
+  "dataset": "large-motion-v1-page-eval",
+  "eval_index": 0,
+  "source_pose_archive": "/threed-code/minghaoyin/GLD/results/large-motion-v1-page-eval/0002000/lingbo_designed3_20260905_1812/eval/shard_0/case_000/scannetpp/000_poses.npz",
+  "source_geometry_archive": "/threed-code/minghaoyin/GLD/results/large-motion-v1-page-eval/0002000/lingbo_designed3_20260905_1812/eval/shard_0/case_000/scannetpp/000_geom.npz",
+  "source_scene": null,
+  "source_pose_metadata": null,
+  "evidence_path": "/threed-code/minghaoyin/GLD/configs/training/lingbo_world_designed_trajectories.json",
+  "metrics_path": "/threed-code/minghaoyin/GLD/results/large-motion-v1-page-eval/0002000/lingbo_designed3_20260905_1812/eval/shard_0/case_000/metrics.json",
+  "checkpoint": "/threed-code/minghaoyin/GLD/results/ld-v4-rae-large-motion-v1-v81-giant-spacetime-shift6-2k/000-V4RAE-enc[768, 2048]-dec[768, 2048]-d[28, 6]+[28, 6]-v81-bf16/checkpoints/0002000.pt",
+  "config": "/threed-code/minghaoyin/GLD/configs/training/latent_diffusion_v4_rae_large_motion_v1_v81_giant_spacetime_shift6.yaml",
+  "reference_trajectory_type": "designed synthetic input/reference trajectory",
+  "reference_is_ground_truth": false,
+  "coordinate_representation": "camera-to-world homogeneous 4x4 matrices",
+  "coordinate_convention": "opencv_c2w",
+  "scale_and_units": "metric-scale source trajectory; translation unit documented as metric by source",
+  "exported_pose_transform": "none; copied from eval geom gt_c2w in evaluated view order",
+  "display_alignment": "none",
+  "model_pose_normalization": "not baked into input_c2w; this export preserves the raw eval input/reference trajectory",
+  "input_K_image_size_hw": [
+    378,
+    672
+  ],
+  "source_camera_image_size_hw": null,
+  "frame_count": 81,
+  "frame_start": 0,
+  "frame_interval": 1,
+  "source_fps": null,
+  "conditioning": {
+    "cond_num": 1,
+    "conditioning_eval_indices": [
+      0
+    ],
+    "conditioning_frame_included": true
+  },
+  "correspondence_evidence": "eval 000_poses.npz directly contains input/pred c2w and K; 000_geom.npz gt_c2w/gt_K matches input exactly",
+  "validation": {
+    "input": {
+      "max_homogeneous_last_row_error": 0.0,
+      "max_rotation_orthogonality_error": 8.665556339160219e-08,
+      "max_rotation_determinant_error": 5.1678224366469294e-08
+    },
+    "predicted": {
+      "max_homogeneous_last_row_error": 0.0,
+      "max_rotation_orthogonality_error": 2.1094237467877974e-15,
+      "max_rotation_determinant_error": 2.1094237467877974e-15
+    }
+  },
+  "depth_video": {
+    "visualization_percentile_low": 0.08357280567288398,
+    "visualization_percentile_high": 1.6507455468177836,
+    "fps": 12
+  },
+  "synthetic_trajectory": true,
+  "designed_trajectory": {
+    "spec": "/threed-code/minghaoyin/GLD/configs/training/lingbo_world_designed_trajectories.json",
+    "base_scene": "/threed-code/public_datasets/Geometry_diffusion_data/large_motion_v1_packed/lingbot_mp4__lingbo_world/chunk_000",
+    "type": "forward",
+    "distance": 16.0,
+    "rise": 0.8,
+    "progress_parameterization": "smoothstep(index / 80)",
+    "anchor": "first c2w and K from the base scene pose metadata"
+  }
+}

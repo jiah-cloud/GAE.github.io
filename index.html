@@ -118,7 +118,7 @@
               </figure>
               <figure class="hero-output-card hero-pose-card">
                 <figcaption><span>03 <b>Camera poses</b></span><small><i class="pose-gt"></i>GT <i class="pose-estimated"></i>Estimated</small></figcaption>
-                <canvas id="hero-pose" width="672" height="378" role="img" aria-label="Ground-truth and estimated camera trajectories for Arched lounge, aligned with Sim(3)"></canvas>
+                <canvas id="hero-pose" width="672" height="378" role="img" aria-label="Ground-truth and estimated camera trajectories for Arched lounge"></canvas>
               </figure>
               <figure class="hero-output-card">
                 <figcaption><span>04 <b>3D geometry</b></span><small>Progressive point cloud</small></figcaption>
@@ -308,7 +308,7 @@
                   Your browser does not support HTML5 video playback.
                 </video>
                 <img id="i2v-pose" src="assets/i2v/poses/re10k_motion_000_pose.png" alt="Input camera pose trajectory" hidden />
-                <canvas id="i2v-pose-overlay" class="pose-overlay" width="480" height="300" aria-label="Animated input and GAE-predicted camera trajectory alignment" hidden></canvas>
+                <canvas id="i2v-pose-overlay" class="pose-overlay" width="480" height="300" aria-label="Animated input and GAE-predicted camera trajectories" hidden></canvas>
               </div>
               <p class="video-status" id="i2v-video-status" hidden>
                 Playback could not start in this browser. <a id="i2v-video-open" href="assets/i2v/videos/re10k_motion_000_rgb.mp4" target="_blank" rel="noreferrer">Open the MP4 directly ↗</a>
@@ -371,7 +371,7 @@
                   Your browser does not support HTML5 video playback.
                 </video>
                 <img id="outdoor-pose" src="assets/outdoor/poses/mvssynth_0000_pose.png" alt="Input camera pose trajectory" hidden />
-                <canvas id="outdoor-pose-overlay" class="pose-overlay" width="480" height="300" aria-label="Animated input and GAE-predicted camera trajectory alignment" hidden></canvas>
+                <canvas id="outdoor-pose-overlay" class="pose-overlay" width="480" height="300" aria-label="Animated input and GAE-predicted camera trajectories" hidden></canvas>
               </div>
               <p class="video-status" id="outdoor-video-status" hidden>
                 Playback could not start in this browser. <a id="outdoor-video-open" href="assets/teaser/outdoor-019_rgb.mp4" target="_blank" rel="noreferrer">Open the MP4 directly ↗</a>
@@ -554,15 +554,15 @@
     </noscript>
     <script src="assets/direct-data/pose-data.js" defer></script>
     <script src="assets/direct-data/i2v-samples.js?v=20260922release" defer></script>
-    <script src="assets/direct-data/outdoor-samples.js?v=20260922method" defer></script>
+    <script src="assets/direct-data/outdoor-samples.js?v=20260923trim" defer></script>
     <script src="assets/direct-data/outdoor-poses.js" defer></script>
     <script src="assets/direct-data/compare-poses.js?v=20260919e" defer></script>
     <script src="output-quality-radar.bundle.js?v=20260921cmp" defer></script>
     <script src="image-viewer.bundle.js?v=20260921" defer></script>
-    <script src="assets/direct-data/sequence-extras.js?v=20260922sync" defer></script>
-    <script src="sequence-player.js?v=20260922sync" defer></script>
-    <script src="app.bundle.js?v=20260922film" defer></script>
-    <script src="hero-showcase.js?v=20260922orbit" defer></script>
+    <script src="assets/direct-data/sequence-extras.js?v=20260923reference" defer></script>
+    <script src="sequence-player.js?v=20260923clean" defer></script>
+    <script src="app.bundle.js?v=20260923clean" defer></script>
+    <script src="hero-showcase.js?v=20260923clean" defer></script>
     <script src="case-navigation.js?v=20260922grid" defer></script>
     <script src="chapter-navigation.js?v=20260922hover" defer></script>
   </body>

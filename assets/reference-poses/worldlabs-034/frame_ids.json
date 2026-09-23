@@ -1,0 +1,652 @@
+{
+  "frames": [
+    {
+      "eval_index": 0,
+      "source_frame_index": 84,
+      "source_frame_name": "000084",
+      "timestamp_seconds": 2.8,
+      "frame_idx": 84,
+      "global_frame_idx": 84
+    },
+    {
+      "eval_index": 1,
+      "source_frame_index": 85,
+      "source_frame_name": "000085",
+      "timestamp_seconds": 2.8333333333333335,
+      "frame_idx": 85,
+      "global_frame_idx": 85
+    },
+    {
+      "eval_index": 2,
+      "source_frame_index": 86,
+      "source_frame_name": "000086",
+      "timestamp_seconds": 2.8666666666666667,
+      "frame_idx": 86,
+      "global_frame_idx": 86
+    },
+    {
+      "eval_index": 3,
+      "source_frame_index": 87,
+      "source_frame_name": "000087",
+      "timestamp_seconds": 2.9,
+      "frame_idx": 87,
+      "global_frame_idx": 87
+    },
+    {
+      "eval_index": 4,
+      "source_frame_index": 88,
+      "source_frame_name": "000088",
+      "timestamp_seconds": 2.933333333333333,
+      "frame_idx": 88,
+      "global_frame_idx": 88
+    },
+    {
+      "eval_index": 5,
+      "source_frame_index": 89,
+      "source_frame_name": "000089",
+      "timestamp_seconds": 2.966666666666667,
+      "frame_idx": 89,
+      "global_frame_idx": 89
+    },
+    {
+      "eval_index": 6,
+      "source_frame_index": 90,
+      "source_frame_name": "000090",
+      "timestamp_seconds": 3.0,
+      "frame_idx": 90,
+      "global_frame_idx": 90
+    },
+    {
+      "eval_index": 7,
+      "source_frame_index": 91,
+      "source_frame_name": "000091",
+      "timestamp_seconds": 3.033333333333333,
+      "frame_idx": 91,
+      "global_frame_idx": 91
+    },
+    {
+      "eval_index": 8,
+      "source_frame_index": 92,
+      "source_frame_name": "000092",
+      "timestamp_seconds": 3.066666666666667,
+      "frame_idx": 92,
+      "global_frame_idx": 92
+    },
+    {
+      "eval_index": 9,
+      "source_frame_index": 93,
+      "source_frame_name": "000093",
+      "timestamp_seconds": 3.1,
+      "frame_idx": 93,
+      "global_frame_idx": 93
+    },
+    {
+      "eval_index": 10,
+      "source_frame_index": 94,
+      "source_frame_name": "000094",
+      "timestamp_seconds": 3.1333333333333333,
+      "frame_idx": 94,
+      "global_frame_idx": 94
+    },
+    {
+      "eval_index": 11,
+      "source_frame_index": 95,
+      "source_frame_name": "000095",
+      "timestamp_seconds": 3.1666666666666665,
+      "frame_idx": 95,
+      "global_frame_idx": 95
+    },
+    {
+      "eval_index": 12,
+      "source_frame_index": 96,
+      "source_frame_name": "000096",
+      "timestamp_seconds": 3.2,
+      "frame_idx": 96,
+      "global_frame_idx": 96
+    },
+    {
+      "eval_index": 13,
+      "source_frame_index": 97,
+      "source_frame_name": "000097",
+      "timestamp_seconds": 3.2333333333333334,
+      "frame_idx": 97,
+      "global_frame_idx": 97
+    },
+    {
+      "eval_index": 14,
+      "source_frame_index": 98,
+      "source_frame_name": "000098",
+      "timestamp_seconds": 3.2666666666666666,
+      "frame_idx": 98,
+      "global_frame_idx": 98
+    },
+    {
+      "eval_index": 15,
+      "source_frame_index": 99,
+      "source_frame_name": "000099",
+      "timestamp_seconds": 3.3,
+      "frame_idx": 99,
+      "global_frame_idx": 99
+    },
+    {
+      "eval_index": 16,
+      "source_frame_index": 100,
+      "source_frame_name": "000100",
+      "timestamp_seconds": 3.3333333333333335,
+      "frame_idx": 100,
+      "global_frame_idx": 100
+    },
+    {
+      "eval_index": 17,
+      "source_frame_index": 101,
+      "source_frame_name": "000101",
+      "timestamp_seconds": 3.3666666666666667,
+      "frame_idx": 101,
+      "global_frame_idx": 101
+    },
+    {
+      "eval_index": 18,
+      "source_frame_index": 102,
+      "source_frame_name": "000102",
+      "timestamp_seconds": 3.4,
+      "frame_idx": 102,
+      "global_frame_idx": 102
+    },
+    {
+      "eval_index": 19,
+      "source_frame_index": 103,
+      "source_frame_name": "000103",
+      "timestamp_seconds": 3.433333333333333,
+      "frame_idx": 103,
+      "global_frame_idx": 103
+    },
+    {
+      "eval_index": 20,
+      "source_frame_index": 104,
+      "source_frame_name": "000104",
+      "timestamp_seconds": 3.466666666666667,
+      "frame_idx": 104,
+      "global_frame_idx": 104
+    },
+    {
+      "eval_index": 21,
+      "source_frame_index": 105,
+      "source_frame_name": "000105",
+      "timestamp_seconds": 3.5,
+      "frame_idx": 105,
+      "global_frame_idx": 105
+    },
+    {
+      "eval_index": 22,
+      "source_frame_index": 106,
+      "source_frame_name": "000106",
+      "timestamp_seconds": 3.533333333333333,
+      "frame_idx": 106,
+      "global_frame_idx": 106
+    },
+    {
+      "eval_index": 23,
+      "source_frame_index": 107,
+      "source_frame_name": "000107",
+      "timestamp_seconds": 3.566666666666667,
+      "frame_idx": 107,
+      "global_frame_idx": 107
+    },
+    {
+      "eval_index": 24,
+      "source_frame_index": 108,
+      "source_frame_name": "000108",
+      "timestamp_seconds": 3.6,
+      "frame_idx": 108,
+      "global_frame_idx": 108
+    },
+    {
+      "eval_index": 25,
+      "source_frame_index": 109,
+      "source_frame_name": "000109",
+      "timestamp_seconds": 3.6333333333333333,
+      "frame_idx": 109,
+      "global_frame_idx": 109
+    },
+    {
+      "eval_index": 26,
+      "source_frame_index": 110,
+      "source_frame_name": "000110",
+      "timestamp_seconds": 3.6666666666666665,
+      "frame_idx": 110,
+      "global_frame_idx": 110
+    },
+    {
+      "eval_index": 27,
+      "source_frame_index": 111,
+      "source_frame_name": "000111",
+      "timestamp_seconds": 3.7,
+      "frame_idx": 111,
+      "global_frame_idx": 111
+    },
+    {
+      "eval_index": 28,
+      "source_frame_index": 112,
+      "source_frame_name": "000112",
+      "timestamp_seconds": 3.7333333333333334,
+      "frame_idx": 112,
+      "global_frame_idx": 112
+    },
+    {
+      "eval_index": 29,
+      "source_frame_index": 113,
+      "source_frame_name": "000113",
+      "timestamp_seconds": 3.7666666666666666,
+      "frame_idx": 113,
+      "global_frame_idx": 113
+    },
+    {
+      "eval_index": 30,
+      "source_frame_index": 114,
+      "source_frame_name": "000114",
+      "timestamp_seconds": 3.8,
+      "frame_idx": 114,
+      "global_frame_idx": 114
+    },
+    {
+      "eval_index": 31,
+      "source_frame_index": 115,
+      "source_frame_name": "000115",
+      "timestamp_seconds": 3.8333333333333335,
+      "frame_idx": 115,
+      "global_frame_idx": 115
+    },
+    {
+      "eval_index": 32,
+      "source_frame_index": 116,
+      "source_frame_name": "000116",
+      "timestamp_seconds": 3.8666666666666667,
+      "frame_idx": 116,
+      "global_frame_idx": 116
+    },
+    {
+      "eval_index": 33,
+      "source_frame_index": 117,
+      "source_frame_name": "000117",
+      "timestamp_seconds": 3.9,
+      "frame_idx": 117,
+      "global_frame_idx": 117
+    },
+    {
+      "eval_index": 34,
+      "source_frame_index": 118,
+      "source_frame_name": "000118",
+      "timestamp_seconds": 3.933333333333333,
+      "frame_idx": 118,
+      "global_frame_idx": 118
+    },
+    {
+      "eval_index": 35,
+      "source_frame_index": 119,
+      "source_frame_name": "000119",
+      "timestamp_seconds": 3.966666666666667,
+      "frame_idx": 119,
+      "global_frame_idx": 119
+    },
+    {
+      "eval_index": 36,
+      "source_frame_index": 120,
+      "source_frame_name": "000120",
+      "timestamp_seconds": 4.0,
+      "frame_idx": 120,
+      "global_frame_idx": 120
+    },
+    {
+      "eval_index": 37,
+      "source_frame_index": 121,
+      "source_frame_name": "000121",
+      "timestamp_seconds": 4.033333333333333,
+      "frame_idx": 121,
+      "global_frame_idx": 121
+    },
+    {
+      "eval_index": 38,
+      "source_frame_index": 122,
+      "source_frame_name": "000122",
+      "timestamp_seconds": 4.066666666666666,
+      "frame_idx": 122,
+      "global_frame_idx": 122
+    },
+    {
+      "eval_index": 39,
+      "source_frame_index": 123,
+      "source_frame_name": "000123",
+      "timestamp_seconds": 4.1,
+      "frame_idx": 123,
+      "global_frame_idx": 123
+    },
+    {
+      "eval_index": 40,
+      "source_frame_index": 124,
+      "source_frame_name": "000124",
+      "timestamp_seconds": 4.133333333333334,
+      "frame_idx": 124,
+      "global_frame_idx": 124
+    },
+    {
+      "eval_index": 41,
+      "source_frame_index": 125,
+      "source_frame_name": "000125",
+      "timestamp_seconds": 4.166666666666667,
+      "frame_idx": 125,
+      "global_frame_idx": 125
+    },
+    {
+      "eval_index": 42,
+      "source_frame_index": 126,
+      "source_frame_name": "000126",
+      "timestamp_seconds": 4.2,
+      "frame_idx": 126,
+      "global_frame_idx": 126
+    },
+    {
+      "eval_index": 43,
+      "source_frame_index": 127,
+      "source_frame_name": "000127",
+      "timestamp_seconds": 4.233333333333333,
+      "frame_idx": 127,
+      "global_frame_idx": 127
+    },
+    {
+      "eval_index": 44,
+      "source_frame_index": 128,
+      "source_frame_name": "000128",
+      "timestamp_seconds": 4.266666666666667,
+      "frame_idx": 128,
+      "global_frame_idx": 128
+    },
+    {
+      "eval_index": 45,
+      "source_frame_index": 129,
+      "source_frame_name": "000129",
+      "timestamp_seconds": 4.3,
+      "frame_idx": 129,
+      "global_frame_idx": 129
+    },
+    {
+      "eval_index": 46,
+      "source_frame_index": 130,
+      "source_frame_name": "000130",
+      "timestamp_seconds": 4.333333333333333,
+      "frame_idx": 130,
+      "global_frame_idx": 130
+    },
+    {
+      "eval_index": 47,
+      "source_frame_index": 131,
+      "source_frame_name": "000131",
+      "timestamp_seconds": 4.366666666666666,
+      "frame_idx": 131,
+      "global_frame_idx": 131
+    },
+    {
+      "eval_index": 48,
+      "source_frame_index": 132,
+      "source_frame_name": "000132",
+      "timestamp_seconds": 4.4,
+      "frame_idx": 132,
+      "global_frame_idx": 132
+    },
+    {
+      "eval_index": 49,
+      "source_frame_index": 133,
+      "source_frame_name": "000133",
+      "timestamp_seconds": 4.433333333333334,
+      "frame_idx": 133,
+      "global_frame_idx": 133
+    },
+    {
+      "eval_index": 50,
+      "source_frame_index": 134,
+      "source_frame_name": "000134",
+      "timestamp_seconds": 4.466666666666667,
+      "frame_idx": 134,
+      "global_frame_idx": 134
+    },
+    {
+      "eval_index": 51,
+      "source_frame_index": 135,
+      "source_frame_name": "000135",
+      "timestamp_seconds": 4.5,
+      "frame_idx": 135,
+      "global_frame_idx": 135
+    },
+    {
+      "eval_index": 52,
+      "source_frame_index": 136,
+      "source_frame_name": "000136",
+      "timestamp_seconds": 4.533333333333333,
+      "frame_idx": 136,
+      "global_frame_idx": 136
+    },
+    {
+      "eval_index": 53,
+      "source_frame_index": 137,
+      "source_frame_name": "000137",
+      "timestamp_seconds": 4.566666666666666,
+      "frame_idx": 137,
+      "global_frame_idx": 137
+    },
+    {
+      "eval_index": 54,
+      "source_frame_index": 138,
+      "source_frame_name": "000138",
+      "timestamp_seconds": 4.6,
+      "frame_idx": 138,
+      "global_frame_idx": 138
+    },
+    {
+      "eval_index": 55,
+      "source_frame_index": 139,
+      "source_frame_name": "000139",
+      "timestamp_seconds": 4.633333333333334,
+      "frame_idx": 139,
+      "global_frame_idx": 139
+    },
+    {
+      "eval_index": 56,
+      "source_frame_index": 140,
+      "source_frame_name": "000140",
+      "timestamp_seconds": 4.666666666666667,
+      "frame_idx": 140,
+      "global_frame_idx": 140
+    },
+    {
+      "eval_index": 57,
+      "source_frame_index": 141,
+      "source_frame_name": "000141",
+      "timestamp_seconds": 4.7,
+      "frame_idx": 141,
+      "global_frame_idx": 141
+    },
+    {
+      "eval_index": 58,
+      "source_frame_index": 142,
+      "source_frame_name": "000142",
+      "timestamp_seconds": 4.733333333333333,
+      "frame_idx": 142,
+      "global_frame_idx": 142
+    },
+    {
+      "eval_index": 59,
+      "source_frame_index": 143,
+      "source_frame_name": "000143",
+      "timestamp_seconds": 4.766666666666667,
+      "frame_idx": 143,
+      "global_frame_idx": 143
+    },
+    {
+      "eval_index": 60,
+      "source_frame_index": 144,
+      "source_frame_name": "000144",
+      "timestamp_seconds": 4.8,
+      "frame_idx": 144,
+      "global_frame_idx": 144
+    },
+    {
+      "eval_index": 61,
+      "source_frame_index": 145,
+      "source_frame_name": "000145",
+      "timestamp_seconds": 4.833333333333333,
+      "frame_idx": 145,
+      "global_frame_idx": 145
+    },
+    {
+      "eval_index": 62,
+      "source_frame_index": 146,
+      "source_frame_name": "000146",
+      "timestamp_seconds": 4.866666666666666,
+      "frame_idx": 146,
+      "global_frame_idx": 146
+    },
+    {
+      "eval_index": 63,
+      "source_frame_index": 147,
+      "source_frame_name": "000147",
+      "timestamp_seconds": 4.9,
+      "frame_idx": 147,
+      "global_frame_idx": 147
+    },
+    {
+      "eval_index": 64,
+      "source_frame_index": 148,
+      "source_frame_name": "000148",
+      "timestamp_seconds": 4.933333333333334,
+      "frame_idx": 148,
+      "global_frame_idx": 148
+    },
+    {
+      "eval_index": 65,
+      "source_frame_index": 149,
+      "source_frame_name": "000149",
+      "timestamp_seconds": 4.966666666666667,
+      "frame_idx": 149,
+      "global_frame_idx": 149
+    },
+    {
+      "eval_index": 66,
+      "source_frame_index": 150,
+      "source_frame_name": "000150",
+      "timestamp_seconds": 5.0,
+      "frame_idx": 150,
+      "global_frame_idx": 150
+    },
+    {
+      "eval_index": 67,
+      "source_frame_index": 151,
+      "source_frame_name": "000151",
+      "timestamp_seconds": 5.033333333333333,
+      "frame_idx": 151,
+      "global_frame_idx": 151
+    },
+    {
+      "eval_index": 68,
+      "source_frame_index": 152,
+      "source_frame_name": "000152",
+      "timestamp_seconds": 5.066666666666666,
+      "frame_idx": 152,
+      "global_frame_idx": 152
+    },
+    {
+      "eval_index": 69,
+      "source_frame_index": 153,
+      "source_frame_name": "000153",
+      "timestamp_seconds": 5.1,
+      "frame_idx": 153,
+      "global_frame_idx": 153
+    },
+    {
+      "eval_index": 70,
+      "source_frame_index": 154,
+      "source_frame_name": "000154",
+      "timestamp_seconds": 5.133333333333334,
+      "frame_idx": 154,
+      "global_frame_idx": 154
+    },
+    {
+      "eval_index": 71,
+      "source_frame_index": 155,
+      "source_frame_name": "000155",
+      "timestamp_seconds": 5.166666666666667,
+      "frame_idx": 155,
+      "global_frame_idx": 155
+    },
+    {
+      "eval_index": 72,
+      "source_frame_index": 156,
+      "source_frame_name": "000156",
+      "timestamp_seconds": 5.2,
+      "frame_idx": 156,
+      "global_frame_idx": 156
+    },
+    {
+      "eval_index": 73,
+      "source_frame_index": 157,
+      "source_frame_name": "000157",
+      "timestamp_seconds": 5.233333333333333,
+      "frame_idx": 157,
+      "global_frame_idx": 157
+    },
+    {
+      "eval_index": 74,
+      "source_frame_index": 158,
+      "source_frame_name": "000158",
+      "timestamp_seconds": 5.266666666666667,
+      "frame_idx": 158,
+      "global_frame_idx": 158
+    },
+    {
+      "eval_index": 75,
+      "source_frame_index": 159,
+      "source_frame_name": "000159",
+      "timestamp_seconds": 5.3,
+      "frame_idx": 159,
+      "global_frame_idx": 159
+    },
+    {
+      "eval_index": 76,
+      "source_frame_index": 160,
+      "source_frame_name": "000160",
+      "timestamp_seconds": 5.333333333333333,
+      "frame_idx": 160,
+      "global_frame_idx": 160
+    },
+    {
+      "eval_index": 77,
+      "source_frame_index": 161,
+      "source_frame_name": "000161",
+      "timestamp_seconds": 5.366666666666666,
+      "frame_idx": 161,
+      "global_frame_idx": 161
+    },
+    {
+      "eval_index": 78,
+      "source_frame_index": 162,
+      "source_frame_name": "000162",
+      "timestamp_seconds": 5.4,
+      "frame_idx": 162,
+      "global_frame_idx": 162
+    },
+    {
+      "eval_index": 79,
+      "source_frame_index": 163,
+      "source_frame_name": "000163",
+      "timestamp_seconds": 5.433333333333334,
+      "frame_idx": 163,
+      "global_frame_idx": 163
+    },
+    {
+      "eval_index": 80,
+      "source_frame_index": 164,
+      "source_frame_name": "000164",
+      "timestamp_seconds": 5.466666666666667,
+      "frame_idx": 164,
+      "global_frame_idx": 164
+    }
+  ]
+}

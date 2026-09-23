@@ -1,0 +1,414 @@
+{
+  "case_count": 24,
+  "all_ok": true,
+  "cases": [
+    {
+      "key": "worldlabs-001",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 1.5694662458543007e-07,
+      "max_rotation_determinant_error": 1.621168693732855e-07,
+      "status": "ok"
+    },
+    {
+      "key": "worldlabs-005",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 2.009963930849068e-07,
+      "max_rotation_determinant_error": 1.505928988176919e-07,
+      "status": "ok"
+    },
+    {
+      "key": "worldlabs-034",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 1.9752062252464953e-07,
+      "max_rotation_determinant_error": 1.353963491323995e-07,
+      "status": "ok"
+    },
+    {
+      "key": "worldlabs-057",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 2.030263008823141e-07,
+      "max_rotation_determinant_error": 1.533475113557614e-07,
+      "status": "ok"
+    },
+    {
+      "key": "worldlabs-064",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 2.9509978349828714e-07,
+      "max_rotation_determinant_error": 2.740469573492277e-07,
+      "status": "ok"
+    },
+    {
+      "key": "world-054",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 7.578200578173266e-08,
+      "max_rotation_determinant_error": 8.289402453343087e-08,
+      "status": "ok"
+    },
+    {
+      "key": "world-061",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 7.362991638615313e-08,
+      "max_rotation_determinant_error": 7.871072371656851e-08,
+      "status": "ok"
+    },
+    {
+      "key": "world-089",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 6.207293234972155e-08,
+      "max_rotation_determinant_error": 7.303824078874754e-08,
+      "status": "ok"
+    },
+    {
+      "key": "omniworld-099",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 7.289888515060738e-08,
+      "max_rotation_determinant_error": 6.157419352170734e-08,
+      "status": "ok"
+    },
+    {
+      "key": "world-114",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 8.571384313427188e-08,
+      "max_rotation_determinant_error": 6.951299402757627e-08,
+      "status": "ok"
+    },
+    {
+      "key": "world-120",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 7.678479696515694e-08,
+      "max_rotation_determinant_error": 8.003431517522586e-08,
+      "status": "ok"
+    },
+    {
+      "key": "world-125",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 6.114844008919817e-08,
+      "max_rotation_determinant_error": 6.499233262680093e-08,
+      "status": "ok"
+    },
+    {
+      "key": "indoor-000",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 1.9450686039590437e-07,
+      "max_rotation_determinant_error": 1.6327514473779559e-07,
+      "status": "ok"
+    },
+    {
+      "key": "indoor-001",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 9.191412875253491e-08,
+      "max_rotation_determinant_error": 1.0947696127416862e-07,
+      "status": "ok"
+    },
+    {
+      "key": "indoor-003",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 1.545725896168193e-07,
+      "max_rotation_determinant_error": 1.4465460473900293e-07,
+      "status": "ok"
+    },
+    {
+      "key": "indoor-006",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 3.283244307539235e-07,
+      "max_rotation_determinant_error": 2.907694753861989e-07,
+      "status": "ok"
+    },
+    {
+      "key": "indoor-014",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 1.616008362681498e-07,
+      "max_rotation_determinant_error": 1.2816025285466992e-07,
+      "status": "ok"
+    },
+    {
+      "key": "indoor-018",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 9.370609799219665e-08,
+      "max_rotation_determinant_error": 1.1071686922825563e-07,
+      "status": "ok"
+    },
+    {
+      "key": "outdoor-019",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 2.2302519830930123e-07,
+      "max_rotation_determinant_error": 1.8544850610702213e-07,
+      "status": "ok"
+    },
+    {
+      "key": "outdoor-033",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 1.4123445557512326e-07,
+      "max_rotation_determinant_error": 1.0973620045984234e-07,
+      "status": "ok"
+    },
+    {
+      "key": "outdoor-035",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 4.283261840765107e-07,
+      "max_rotation_determinant_error": 3.966158552692889e-07,
+      "status": "ok"
+    },
+    {
+      "key": "outdoor-037",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 3.001453776629859e-07,
+      "max_rotation_determinant_error": 2.6636471617269564e-07,
+      "status": "ok"
+    },
+    {
+      "key": "lm-lingbo-world2",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 8.884236901707254e-08,
+      "max_rotation_determinant_error": 1.1223346962907499e-07,
+      "status": "ok"
+    },
+    {
+      "key": "lm-lingbo-forward",
+      "frames": 81,
+      "input_c2w_shape": [
+        81,
+        4,
+        4
+      ],
+      "input_K_shape": [
+        81,
+        3,
+        3
+      ],
+      "max_rotation_orthogonality_error": 8.665556339160219e-08,
+      "max_rotation_determinant_error": 5.1678224366469294e-08,
+      "status": "ok"
+    }
+  ]
+}
